@@ -1,7 +1,6 @@
 package EntityaBD;
 
 import classes.DatosNewProject;
-import classes.DatosNewProjects;
 import classes.Respuesta;
 import com.google.gson.Gson;
 import entities.ProjectEntity;
@@ -9,7 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import java.util.ArrayList;
+import java.sql.Date;
 
 import static DTO.leerJson.datos;
 
@@ -19,7 +18,7 @@ public class ProjectsBD {
         //creo un EntityManagerFactory para la persistencia
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         for(DatosNewProject proyecto: datos.projects){
-            ProjectEntity project = new ProjectEntity(proyecto.getTitle(),proyecto.getLogo(), proyecto.getWeb(), proyecto.getDescripcion(), proyecto.getState(), proyecto.getInitDate(), proyecto.getEndDate());
+            ProjectEntity project = new ProjectEntity(proyecto.getTitle(),proyecto.getLogo(), proyecto.getWeb(), proyecto.getDescripcion(), proyecto.getState(), (Date) proyecto.getInitDate(), (Date) proyecto.getEndDate());
             System.out.println(project.getTitle());
             //creo un EntityManager y persisto el objeto ProjectEntity en la base de datos
             EntityManager em = emf.createEntityManager();

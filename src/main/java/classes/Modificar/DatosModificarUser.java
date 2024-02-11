@@ -1,7 +1,5 @@
 package classes.Modificar;
 
-import java.sql.Date;
-
 public class DatosModificarUser {
     private int idUser;
     private int idEntity;

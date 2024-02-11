@@ -2,14 +2,11 @@ package ConsultasBD.InsertarDatos;
 
 import Singleton.EmfSingleton;
 import classes.Insertar.DatosInsertarCollaboration;
-import classes.Insertar.DatosInsertarEntity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import entities.CollaborationEntity;
-import entities.EntityEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Query;
 import libs.FicheroEscribible;
 
 import java.io.FileReader;

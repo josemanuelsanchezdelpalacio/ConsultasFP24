@@ -1,14 +1,9 @@
 package ConsultasBD.ModificarDatos;
 
-import classes.Modificar.DatosModificarEntity;
 import classes.Modificar.DatosModificarProject;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import conexiones.ConexionMySQL;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import libs.Leer;
 
 import java.nio.file.Path;
 import java.sql.*;

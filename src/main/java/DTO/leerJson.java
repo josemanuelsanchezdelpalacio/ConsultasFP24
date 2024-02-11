@@ -3,10 +3,6 @@ package DTO;
 import classes.DatosNewProject;
 import classes.DatosNewProjects;
 import com.google.gson.Gson;
-import entities.EntityEntity;
-import entities.ProjectEntity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,9 +10,6 @@ import java.nio.charset.MalformedInputException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.sql.Date;
-
-import jakarta.persistence.Persistence;
 
 public class leerJson {
 

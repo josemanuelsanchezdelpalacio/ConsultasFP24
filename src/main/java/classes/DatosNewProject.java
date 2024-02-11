@@ -1,6 +1,5 @@
 package classes;
 
-import java.awt.*;
 import java.util.Date;
 
 public class DatosNewProject {

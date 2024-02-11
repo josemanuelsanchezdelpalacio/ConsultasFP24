@@ -1,11 +1,9 @@
 package ConsultasBD.InsertarDatos;
 
 import Singleton.EmfSingleton;
-import classes.Insertar.DatosInsertarEntity;
 import classes.Insertar.DatosInsertarImplement;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import entities.EntityEntity;
 import entities.ImplementEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

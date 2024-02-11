@@ -10,7 +10,6 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import libs.FicheroEscribible;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;

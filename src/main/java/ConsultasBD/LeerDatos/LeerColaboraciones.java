@@ -1,7 +1,6 @@
 package ConsultasBD.LeerDatos;
 
 import classes.Insertar.DatosInsertarCollaboration;
-import classes.Insertar.DatosInsertarEntity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import libs.FicheroEscribible;

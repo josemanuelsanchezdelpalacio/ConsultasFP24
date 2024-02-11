@@ -4,7 +4,6 @@ import Singleton.EmfSingleton;
 import classes.Eliminar.DatosEliminarProject;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import entities.FavouriteEntity;
 import entities.ProjectEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

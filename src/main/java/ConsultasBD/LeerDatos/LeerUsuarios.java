@@ -1,19 +1,13 @@
 package ConsultasBD.LeerDatos;
 
-import classes.Insertar.DatosInsertarTechnology;
 import classes.Insertar.DatosInsertarUser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import conexiones.ConexionMySQL;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import libs.FicheroEscribible;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.sql.*;
 import java.util.ArrayList;
 
 public class LeerUsuarios {

@@ -1,6 +1,5 @@
 package ConsultasBD.ModificarDatos;
 
-import classes.Modificar.DatosModificarProject;
 import classes.Modificar.DatosModificarUser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,10 +7,12 @@ import conexiones.ConexionMySQL;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import libs.Leer;
 
 import java.nio.file.Path;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static DTO.leerJson.leerFichero;
 

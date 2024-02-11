@@ -3,7 +3,6 @@ package entities;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.util.Arrays;
 
 @Entity
 @Table(name = "PROJECT", schema = "FP24MJO", catalog = "")
@@ -17,7 +16,7 @@ public class ProjectEntity {
     private String title;
     @Basic
     @Column(name = "Logo")
-    private byte[] logo;
+    private int logo;
     @Basic
     @Column(name = "Web")
     private String web;
@@ -33,6 +32,20 @@ public class ProjectEntity {
     @Basic
     @Column(name = "EndDate")
     private Date endDate;
+
+
+    public ProjectEntity(String title, int logo, String web, String descripcion, String state, Date initDate, Date endDate) {
+        this.id = id;
+        this.title = title;
+        this.logo = logo;
+        this.web = web;
+        this.projectDescription = projectDescription;
+        this.state = state;
+        this.initDate = initDate;
+        this.endDate = endDate;
+    }
+
+    public ProjectEntity() {}
 
     public int getId() {
         return id;
@@ -50,11 +63,11 @@ public class ProjectEntity {
         this.title = title;
     }
 
-    public byte[] getLogo() {
+    public int getLogo() {
         return logo;
     }
 
-    public void setLogo(byte[] logo) {
+    public void setLogo(int logo) {
         this.logo = logo;
     }
 
@@ -107,7 +120,7 @@ public class ProjectEntity {
 
         if (id != that.id) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (!Arrays.equals(logo, that.logo)) return false;
+        if (logo != that.logo) return false;
         if (web != null ? !web.equals(that.web) : that.web != null) return false;
         if (projectDescription != null ? !projectDescription.equals(that.projectDescription) : that.projectDescription != null)
             return false;
@@ -122,7 +135,7 @@ public class ProjectEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(logo);
+        result = 31 * result + logo;
         result = 31 * result + (web != null ? web.hashCode() : 0);
         result = 31 * result + (projectDescription != null ? projectDescription.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);

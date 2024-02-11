@@ -1,7 +1,5 @@
 package classes.Insertar;
 
-import java.sql.Date;
-
 public class DatosInsertarCollaboration {
 
     private int idProject;

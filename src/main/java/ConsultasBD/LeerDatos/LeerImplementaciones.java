@@ -1,6 +1,5 @@
 package ConsultasBD.LeerDatos;
 
-import classes.Insertar.DatosInsertarFavourite;
 import classes.Insertar.DatosInsertarImplement;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
