@@ -1,0 +1,10 @@
+[
+  {
+    "idProject" : 31,
+    "title" : "Proyecto innovador 30",
+    "web": "www.proyecto.com",
+    "descripcion": "El proyecto más innovador de momento",
+    "estado": "En curso",
+    "finFecha": "2024-04-04"
+  }
+]

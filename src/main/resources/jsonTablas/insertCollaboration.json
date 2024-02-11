@@ -1,0 +1,14 @@
+[
+    {
+      "IdProject": 1,
+      "IdUser": 1,
+      "IdFamily": 1,
+      "IsManager": true
+    },
+    {
+      "IdProject": 2,
+      "IdUser": 2,
+      "IdFamily": 2,
+      "IsManager": false
+    }
+]
