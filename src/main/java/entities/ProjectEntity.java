@@ -16,7 +16,7 @@ public class ProjectEntity {
     private String title;
     @Basic
     @Column(name = "Logo")
-    private int logo;
+    private Integer logo;
     @Basic
     @Column(name = "Web")
     private String web;
@@ -34,7 +34,7 @@ public class ProjectEntity {
     private Date endDate;
 
 
-    public ProjectEntity(String title, int logo, String web, String descripcion, String state, Date initDate, Date endDate) {
+    public ProjectEntity(String title, Integer logo, String web, String descripcion, String state, Date initDate, Date endDate) {
         this.id = id;
         this.title = title;
         this.logo = logo;
@@ -63,11 +63,11 @@ public class ProjectEntity {
         this.title = title;
     }
 
-    public int getLogo() {
+    public Integer getLogo() {
         return logo;
     }
 
-    public void setLogo(int logo) {
+    public void setLogo(Integer logo) {
         this.logo = logo;
     }
 
