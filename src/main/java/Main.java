@@ -52,7 +52,6 @@ public class Main {
                 case 6 -> LeerProyectos.leerProyectos();
                 case 7 -> LeerTecnologias.leerTecnologias();
                 case 8 -> LeerUsuarios.leerUsuarios();
-
                 case 9 -> InsertarFamilias.insertarFamilias();
                 case 10 -> InsertarProyectos.insertarProyectos();
                 case 11 -> InsertarEntidades.insertarEntidades();

@@ -1,10 +1,10 @@
 [
     {
-      "FamilyCode": "FAM001",
-      "FamilyName": "Sample Family 1"
+      "FamilyCode": "200",
+      "FamilyName": "Familia200"
     },
     {
-      "FamilyCode": "FAM002",
-      "FamilyName": "Sample Family 2"
+      "FamilyCode": "210",
+      "FamilyName": "Familia210"
     }
 ]
