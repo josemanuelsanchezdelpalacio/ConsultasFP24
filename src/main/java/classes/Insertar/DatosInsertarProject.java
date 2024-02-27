@@ -1,67 +1,29 @@
 package classes.Insertar;
 
+import classes.Proyecto;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class DatosInsertarProject {
-    private String title;
-    private int logo;
-    private String web;
-    private String projectDescription;
-    private String state;
-    private Date initDate;
-    private Date endDate;
+    private ArrayList<Proyecto> proyectos;
 
-    public String getTitle() {
-        return title;
+    public DatosInsertarProject() {
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public DatosInsertarProject(ArrayList<Proyecto> proyectos) {
+        this.proyectos = proyectos;
     }
 
-    public int getLogo() {return logo;}
-
-    public void setLogo(int logo) {
-        this.logo = logo;
+    public ArrayList<Proyecto> getProyectos() {
+        return proyectos;
     }
 
-    public String getWeb() {
-        return web;
-    }
-
-    public void setWeb(String web) {
-        this.web = web;
-    }
-
-    public String getProjectDescription() {
-        return projectDescription;
-    }
-
-    public void setProjectDescription(String projectDescription) {
-        this.projectDescription = projectDescription;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public Date getInitDate() {
-        return initDate;
-    }
-
-    public void setInitDate(Date initDate) {
-        this.initDate = initDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setProyectos(ArrayList<Proyecto> proyectos) {
+        this.proyectos = proyectos;
     }
 }

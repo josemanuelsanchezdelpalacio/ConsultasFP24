@@ -2,7 +2,7 @@ package entities;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "PROJECT", schema = "FP24MJO", catalog = "")
@@ -16,7 +16,7 @@ public class ProjectEntity {
     private String title;
     @Basic
     @Column(name = "Logo")
-    private int logo;
+    private Integer logo;
     @Basic
     @Column(name = "Web")
     private String web;
@@ -24,17 +24,17 @@ public class ProjectEntity {
     @Column(name = "ProjectDescription")
     private String projectDescription;
     @Basic
-    @Column(name = "State")
+    @Column(name = "State", nullable = true)
     private String state;
     @Basic
     @Column(name = "InitDate")
-    private Date initDate;
+    private java.util.Date initDate;
     @Basic
     @Column(name = "EndDate")
-    private Date endDate;
+    private java.util.Date endDate;
 
 
-    public ProjectEntity(String title, int logo, String web, String descripcion, String state, Date initDate, Date endDate) {
+    public ProjectEntity(String title, Integer logo, String web, String projectDescription, String state, Date initDate, java.util.Date endDate) {
         this.id = id;
         this.title = title;
         this.logo = logo;
@@ -63,11 +63,11 @@ public class ProjectEntity {
         this.title = title;
     }
 
-    public int getLogo() {
+    public Integer getLogo() {
         return logo;
     }
 
-    public void setLogo(int logo) {
+    public void setLogo(Integer logo) {
         this.logo = logo;
     }
 
@@ -95,19 +95,19 @@ public class ProjectEntity {
         this.state = state;
     }
 
-    public Date getInitDate() {
+    public java.util.Date getInitDate() {
         return initDate;
     }
 
-    public void setInitDate(Date initDate) {
+    public void setInitDate(java.util.Date initDate) {
         this.initDate = initDate;
     }
 
-    public Date getEndDate() {
+    public java.util.Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(java.util.Date endDate) {
         this.endDate = endDate;
     }
 

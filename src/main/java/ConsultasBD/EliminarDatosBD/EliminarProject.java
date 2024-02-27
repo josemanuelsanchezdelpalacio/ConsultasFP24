@@ -38,16 +38,7 @@ public class EliminarProject {
                     if(result.isEmpty()){
                         System.out.println("El proyecto " + datos.getTitle() + " no existe");
                     }else{
-                        ProjectEntity projectToDelete = result.get(0);
-
-                        // Eliminar registros relacionados en FavouriteEntity
-                        Query favQuery = em.createQuery("DELETE FROM FavouriteEntity f WHERE f.idProject = :idProject");
-                        favQuery.setParameter("idProject", projectToDelete.getId());
-                        favQuery.executeUpdate();
-
-                        em.remove(projectToDelete);
-
-
+                        em.remove(result.get(0));
                         System.out.println("Proyecto " + datos.getTitle() + " eliminado");
                         em.getTransaction().commit();
                     }
