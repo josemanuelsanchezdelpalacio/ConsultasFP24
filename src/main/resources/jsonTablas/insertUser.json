@@ -1,19 +1,21 @@
-[
-    {
-      "IdEntity": 1,
-      "Login": "user1",
-      "UserName": "John",
-      "Surname": "Doe",
-      "Email": "john.doe@example.com",
-      "LinkedIn": "linkedin.com/in/johndoe"
-    },
-    {
-      "IdEntity": 2,
-      "Login": "user2",
-      "UserName": "Jane",
-      "Surname": "Smith",
-      "Email": "jane.smith@example.com",
-      "LinkedIn": "linkedin.com/in/janesmith"
-    }
+{
+"users":[
+  {
+    "IdEntity": 1,
+    "Login": "user1",
+    "UserName": "John",
+    "Surname": "Doe",
+    "Email": "john.doe@example.com",
+    "LinkedIn": "linkedin.com/in/johndoe"
+  },
+  {
+    "IdEntity": 2,
+    "Login": "user2",
+    "UserName": "Jane",
+    "Surname": "Smith",
+    "Email": "jane.smith@example.com",
+    "LinkedIn": "linkedin.com/in/janesmith"
+  }
 ]
+}
 

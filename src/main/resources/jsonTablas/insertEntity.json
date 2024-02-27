@@ -1,21 +1,22 @@
-[
-  {
-    "entityName": "entidad insertada 1",
-    "entityCode": "77777777",
-    "web": "www.newentityweb1.com",
-    "email": "entityemail1@gmail.com"
-  },
-  {
-    "entityName": "entidad insertada 2",
-    "entityCode": "88888888",
-    "web": "www.newentityweb2.com",
-    "email": "entityemail2@gmail.com"
-  },
-  {
-    "entityName": "entidad insertada 3",
-    "entityCode": "99999999",
-    "web": "www.newentityweb3.com",
-    "email": "entityemail3@gmail.com"
-  }
-]
-
+{
+  "entities":[
+    {
+      "entityName": "entidad insertada 1",
+      "entityCode": "77777777",
+      "web": "www.newentityweb1.com",
+      "email": "entityemail1@gmail.com"
+    },
+    {
+      "entityName": "entidad insertada 2",
+      "entityCode": "88888888",
+      "web": "www.newentityweb2.com",
+      "email": "entityemail2@gmail.com"
+    },
+    {
+      "entityName": "entidad insertada 3",
+      "entityCode": "99999999",
+      "web": "www.newentityweb3.com",
+      "email": "entityemail3@gmail.com"
+    }
+  ]
+}
