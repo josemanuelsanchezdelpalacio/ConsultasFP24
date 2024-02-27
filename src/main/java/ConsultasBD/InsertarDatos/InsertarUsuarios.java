@@ -1,38 +1,36 @@
 package ConsultasBD.InsertarDatos;
 
 import Singleton.EmfSingleton;
-import classes.Insertar.DatosInsertarUser;
+import classes.Insertar.Usuarios.DatosInsertarUser;
+import classes.Insertar.Usuarios.Usuario;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import entities.UsersEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import libs.FicheroEscribible;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 
 public class InsertarUsuarios {
-
-    public static ArrayList<DatosInsertarUser> usuariosInsertar = new ArrayList<>();
-
     public static void insertarUsuarios() {
         Path p = Path.of("src/main/resources/jsonTablas/insertUser.json");
+        DatosInsertarUser usuariosInsertar;
+        String txtJson;
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {
+                txtJson = Files.readString(p);
                 Gson gson = new Gson();
-                usuariosInsertar = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarUser>>() {
-                }.getType());
+                usuariosInsertar = gson.fromJson(txtJson, DatosInsertarUser.class);
 
                 EntityManagerFactory emf = EmfSingleton.getInstance().getEmf();
                 EntityManager em = emf.createEntityManager();
                 em.getTransaction().begin();
 
-                for (DatosInsertarUser datos : usuariosInsertar) {
+                for (Usuario datos : usuariosInsertar.getUsers()) {
                     if (!existeUsuario(em, datos.getLogin())) {
                         UsersEntity userEntity = new UsersEntity();
                         userEntity.setIdEntity(datos.getIdEntity());
