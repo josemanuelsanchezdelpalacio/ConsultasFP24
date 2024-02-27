@@ -1,6 +1,7 @@
 package ConsultasBD.LeerDatos;
 
-import classes.Insertar.DatosInsertarTechnology;
+import classes.Insertar.Tecnologias.DatosInsertarTechnology;
+import classes.Insertar.Tecnologias.Tecnologia;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import libs.FicheroEscribible;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class LeerTecnologias {
 
     public static void leerTecnologias() {
-        ArrayList<DatosInsertarTechnology> tecnologiasLeer = new ArrayList<>();
+        ArrayList<Tecnologia> tecnologiasLeer = new ArrayList<>();
         Path p = Path.of("src/main/resources/jsonTablas/insertTechnology.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
@@ -22,7 +23,7 @@ public class LeerTecnologias {
                 tecnologiasLeer = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarTechnology>>() {
                 }.getType());
 
-                for (DatosInsertarTechnology dato : tecnologiasLeer) {
+                for (Tecnologia dato : tecnologiasLeer) {
                     System.out.println("IdProject: " + dato.getTag());
                     System.out.println("IdTechnology: " + dato.getTechName());
                 }

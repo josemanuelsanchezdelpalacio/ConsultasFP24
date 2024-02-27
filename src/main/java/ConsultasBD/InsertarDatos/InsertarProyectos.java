@@ -1,26 +1,20 @@
 package ConsultasBD.InsertarDatos;
 
 import Singleton.EmfSingleton;
-import classes.Insertar.DatosInsertarProject;
-import classes.Proyecto;
+import classes.Insertar.Proyecto.DatosInsertarProject;
+import classes.Insertar.Proyecto.Proyecto;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import entities.ProjectEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import libs.FicheroEscribible;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 
 public class InsertarProyectos {
-
-//    public static ArrayList<DatosInsertarProject> proyectosInsertar = new ArrayList<>();
-
     public static void insertarProyectos() {
         Path p = Path.of("src/main/resources/jsonTablas/insertProject.json");
         DatosInsertarProject proyectosInsertar;
