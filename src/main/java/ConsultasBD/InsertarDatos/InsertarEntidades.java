@@ -1,7 +1,8 @@
 package ConsultasBD.InsertarDatos;
 
 import Singleton.EmfSingleton;
-import classes.Insertar.DatosInsertarEntity;
+import classes.Insertar.Entities.DatosInsertarEntity;
+import classes.Insertar.Entities.Entity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import entities.EntityEntity;
@@ -12,27 +13,30 @@ import libs.FicheroEscribible;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class InsertarEntidades {
 
-    public static ArrayList<DatosInsertarEntity> entidadesInsertar = new ArrayList<>();
+
 
     public static void insertarEntidades() {
         Path p = Path.of("src/main/resources/jsonTablas/insertEntity.json");
+        DatosInsertarEntity entitiesInsertar;
+        String txtJson;
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {
+                txtJson = Files.readString(p);
                 Gson gson = new Gson();
-                entidadesInsertar = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarEntity>>() {
-                }.getType());
+                entitiesInsertar = gson.fromJson(txtJson, DatosInsertarEntity.class);
 
                 EntityManagerFactory emf = EmfSingleton.getInstance().getEmf();
                 EntityManager em = emf.createEntityManager();
                 em.getTransaction().begin();
 
-                for (DatosInsertarEntity datos : entidadesInsertar) {
+                for (Entity datos : entitiesInsertar.getEntities()) {
                     if (!existeEntidadConEntityCode(em, datos.getEntityCode())) {
                         EntityEntity entityEntity = new EntityEntity();
                         entityEntity.setEntityName(datos.getEntityName());

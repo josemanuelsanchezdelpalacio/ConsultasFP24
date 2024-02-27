@@ -1,11 +1,22 @@
-package classes.Insertar;
+package classes.Insertar.Entities;
 
-public class DatosInsertarEntity {
+public class Entity {
 
     private String entityName;
     private String entityCode;
     private String web;
     private String email;
+
+    public Entity() {
+    }
+
+    public Entity(String entityName, String entityCode, String web, String email) {
+        this.entityName = entityName;
+        this.entityCode = entityCode;
+        this.web = web;
+        this.email = email;
+    }
+
 
     public String getEntityName() {
         return entityName;

@@ -1,6 +1,7 @@
 package ConsultasBD.LeerDatos;
 
-import classes.Insertar.DatosInsertarEntity;
+import classes.Insertar.Entities.DatosInsertarEntity;
+import classes.Insertar.Entities.Entity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import libs.FicheroEscribible;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class LeerEntidades {
 
     public static void leerEntidades() {
-        ArrayList<DatosInsertarEntity> entidadesLeer = new ArrayList<>();
+        ArrayList<Entity> entidadesLeer = new ArrayList<>();
         Path p = Path.of("src/main/resources/jsonTablas/insertEntity.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
@@ -22,7 +23,7 @@ public class LeerEntidades {
                 entidadesLeer = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarEntity>>() {
                 }.getType());
 
-                for (DatosInsertarEntity dato : entidadesLeer) {
+                for (Entity dato : entidadesLeer) {
                     System.out.println("EntityName: " + dato.getEntityName());
                     System.out.println("EntityCode: " + dato.getEntityCode());
                     System.out.println("Web: " + dato.getWeb());
