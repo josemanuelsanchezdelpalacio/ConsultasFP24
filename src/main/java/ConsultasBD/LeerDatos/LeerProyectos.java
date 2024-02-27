@@ -1,7 +1,7 @@
 package ConsultasBD.LeerDatos;
 
-import classes.Insertar.DatosInsertarProject;
-import classes.Proyecto;
+import classes.Insertar.Proyecto.DatosInsertarProject;
+import classes.Insertar.Proyecto.Proyecto;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import libs.FicheroEscribible;

@@ -1,4 +1,4 @@
-package classes;
+package classes.Insertar.Proyecto;
 
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
