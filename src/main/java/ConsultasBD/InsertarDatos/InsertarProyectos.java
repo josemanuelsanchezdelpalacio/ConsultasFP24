@@ -4,6 +4,7 @@ import Singleton.EmfSingleton;
 import classes.Insertar.Proyecto.DatosInsertarProject;
 import classes.Insertar.Proyecto.Proyecto;
 import com.google.gson.Gson;
+import entities.CollaborationEntity;
 import entities.ProjectEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -42,6 +43,13 @@ public class InsertarProyectos {
                         projectEntity.setState(datos.getState());
                         projectEntity.setInitDate(datos.getInitDate());
                         projectEntity.setEndDate(datos.getEndDate());
+                        //CollaborationEntity collaborationEntity = new CollaborationEntity();
+                        //collaborationEntity.setManager(true);
+                        //TODO COGER DESDE EL JSON
+                        //collaborationEntity.setIdUser();
+                        //collaborationEntity.setIdFamily();
+                        //TODO SELECT A PROJECT QUE HEMOS INSERTADO PARA RECUPERAR EL ID
+                        //collaborationEntity.setIdProject();
 
                         em.persist(projectEntity);
                         System.out.println("Proyecto con título " + datos.getTitle() + " ha sido insertado correctamente");

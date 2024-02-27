@@ -13,7 +13,6 @@ import libs.FicheroEscribible;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-//TODO HASTA QUE TECNOLOGIAS NO ESTE METIUDO NO SABEMOS SI VA A PODER IR
 public class InsertarImplementaciones {
     public static void insertarImplementaciones() {
         Path p = Path.of("src/main/resources/jsonTablas/insertImplement.json");

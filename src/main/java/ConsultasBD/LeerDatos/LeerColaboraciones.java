@@ -1,6 +1,7 @@
 package ConsultasBD.LeerDatos;
 
-import classes.Insertar.DatosInsertarCollaboration;
+import classes.Insertar.Colaboraciones.Colaboracion;
+import classes.Insertar.Colaboraciones.DatosInsertarCollaboration;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import libs.FicheroEscribible;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class LeerColaboraciones {
 
     public static void leerColaboraciones() {
-        ArrayList<DatosInsertarCollaboration> colaboracionesLeer = new ArrayList<>();
+        ArrayList<Colaboracion> colaboracionesLeer = new ArrayList<>();
         Path p = Path.of("src/main/resources/jsonTablas/insertCollaboration.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
@@ -22,7 +23,7 @@ public class LeerColaboraciones {
                 colaboracionesLeer = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarCollaboration>>() {
                 }.getType());
 
-                for (DatosInsertarCollaboration dato : colaboracionesLeer) {
+                for (Colaboracion dato : colaboracionesLeer) {
                     System.out.println("IdProyecto: " + dato.getIdProject());
                     System.out.println("IdUser: " + dato.getIdUser());
                     System.out.println("IdFamily: " + dato.getIdFamily());

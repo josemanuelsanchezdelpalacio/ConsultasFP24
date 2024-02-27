@@ -1,37 +1,36 @@
 package ConsultasBD.InsertarDatos;
 
 import Singleton.EmfSingleton;
-import classes.Insertar.DatosInsertarCollaboration;
+import classes.Insertar.Colaboraciones.Colaboracion;
+import classes.Insertar.Colaboraciones.DatosInsertarCollaboration;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import entities.CollaborationEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import libs.FicheroEscribible;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 
 public class InsertarColaboraciones {
 
-    public static ArrayList<DatosInsertarCollaboration> colaboracionesInsertar = new ArrayList<>();
-
     public static void insertarColaboraciones() {
         Path p = Path.of("src/main/resources/jsonTablas/insertCollaboration.json");
+        DatosInsertarCollaboration colaboracionesInsertar;
+        String txtJson;
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {
+                txtJson = Files.readString(p);
                 Gson gson = new Gson();
-                colaboracionesInsertar = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarCollaboration>>() {
-                }.getType());
+                colaboracionesInsertar = gson.fromJson(txtJson, DatosInsertarCollaboration.class);
 
                 EntityManagerFactory emf = EmfSingleton.getInstance().getEmf();
                 EntityManager em = emf.createEntityManager();
                 em.getTransaction().begin();
 
-                for (DatosInsertarCollaboration datos : colaboracionesInsertar) {
+                for (Colaboracion datos : colaboracionesInsertar.getCollaborations()) {
                     if (!existeColaboracion(em, datos.getIdProject(), datos.getIdUser(), datos.getIdFamily())) {
                         CollaborationEntity collaborationEntity = new CollaborationEntity();
                         collaborationEntity.setIdProject(datos.getIdProject());
