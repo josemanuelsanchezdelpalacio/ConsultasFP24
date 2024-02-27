@@ -1,14 +1,16 @@
-[
-    {
-      "IdProject": 1,
-      "IdUser": 1,
-      "IdFamily": 1,
-      "IsManager": true
-    },
-    {
-      "IdProject": 2,
-      "IdUser": 2,
-      "IdFamily": 2,
-      "IsManager": false
-    }
-]
+{
+  "collaborations":[
+      {
+        "IdProject": 1,
+        "IdUser": 1,
+        "IdFamily": 4,
+        "IsManager": true
+      },
+      {
+        "IdProject": 2,
+        "IdUser": 5,
+        "IdFamily": 5,
+        "IsManager": false
+      }
+  ]
+}

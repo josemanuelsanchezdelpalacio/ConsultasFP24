@@ -1,38 +1,35 @@
 package ConsultasBD.InsertarDatos;
 
 import Singleton.EmfSingleton;
-import classes.Insertar.DatosInsertarImplement;
+import classes.Insertar.Implementaciones.DatosInsertarImplement;
+import classes.Insertar.Implementaciones.Implementacion;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import entities.ImplementEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import libs.FicheroEscribible;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-
 public class InsertarImplementaciones {
-
-    public static ArrayList<DatosInsertarImplement> implementacionesInsertar = new ArrayList<>();
-
     public static void insertarImplementaciones() {
         Path p = Path.of("src/main/resources/jsonTablas/insertImplement.json");
+        DatosInsertarImplement implementacionesInsertar;
+        String txtJson;
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {
+                txtJson = Files.readString(p);
                 Gson gson = new Gson();
-                implementacionesInsertar = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarImplement>>() {
-                }.getType());
+                implementacionesInsertar = gson.fromJson(txtJson, DatosInsertarImplement.class);
 
                 EntityManagerFactory emf = EmfSingleton.getInstance().getEmf();
                 EntityManager em = emf.createEntityManager();
                 em.getTransaction().begin();
 
-                for (DatosInsertarImplement datos : implementacionesInsertar) {
+                for (Implementacion datos : implementacionesInsertar.getImplementations()) {
                     if (!existeImplementacion(em, datos.getIdProject(), datos.getIdTechnology())) {
                         ImplementEntity implementEntity = new ImplementEntity();
                         implementEntity.setIdProject(datos.getIdProject());

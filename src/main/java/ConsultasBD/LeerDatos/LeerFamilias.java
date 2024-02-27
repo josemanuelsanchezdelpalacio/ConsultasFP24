@@ -1,6 +1,6 @@
 package ConsultasBD.LeerDatos;
 
-import classes.Insertar.DatosInsertarFamily;
+import classes.Insertar.Families.Family;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import libs.FicheroEscribible;
@@ -13,16 +13,16 @@ import java.util.ArrayList;
 public class LeerFamilias {
 
     public static void leerFamilias() {
-        ArrayList<DatosInsertarFamily> familiasLeer = new ArrayList<>();
+        ArrayList<Family> familiasLeer = new ArrayList<>();
         Path p = Path.of("src/main/resources/jsonTablas/insertFamily.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {
                 Gson gson = new Gson();
-                familiasLeer = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarFamily>>() {
+                familiasLeer = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<Family>>() {
                 }.getType());
 
-                for (DatosInsertarFamily dato : familiasLeer) {
+                for (Family dato : familiasLeer) {
                     System.out.println("FamilyCode: " + dato.getFamilyCode());
                     System.out.println("FamilyName: " + dato.getFamilyName());
                 }

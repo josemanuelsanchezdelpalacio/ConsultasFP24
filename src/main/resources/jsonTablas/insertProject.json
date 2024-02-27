@@ -1,50 +1,52 @@
-[
-  {
-    "Title": "Ejemplo de evento",
-    "Logo": 1,
-    "Descripcion": "Descripción del evento",
-    "Web": "https://www.ejemplo.com",
-    "InitDate": "2024-01-31",
-    "EndDate": "2024-02-01",
-    "State": "Completado",
-    "IDUser": 123,
-    "IsManager": true,
-    "IDFamily": 456
-  },
-  {
-    "Title": "Reunión de equipo",
-    "Logo": 2,
-    "Descripcion": "Reunión semanal para discutir proyectos",
-    "Web": "https://www.empresa.com/reunion",
-    "InitDate": "2024-02-05",
-    "EndDate": "2024-02-05",
-    "State": "En Curso",
-    "IDUser": 456,
-    "IsManager": false,
-    "IDFamily": 789
-  },
-  {
-    "Title": "Fiesta de cumpleaños",
-    "Logo": 3,
-    "Descripcion": "Celebración del cumpleaños de Juan",
-    "Web": "",
-    "InitDate": "2024-03-15",
-    "EndDate": "2024-03-16",
-    "State": "Pendiente",
-    "IDUser": 789,
-    "IsManager": true,
-    "IDFamily": 123
-  },
-  {
-    "Title": "Conferencia de tecnología",
-    "Logo": 4,
-    "Descripcion": "Evento anual sobre las últimas tendencias tecnológicas",
-    "Web": "https://www.conferencia-tech.com",
-    "InitDate": "2024-04-20",
-    "EndDate": "2024-04-22",
-    "State": "Completado",
-    "IDUser": 123,
-    "IsManager": true,
-    "IDFamily": 456
-  }
-]
+{
+  "proyectos": [
+    {
+      "Title": "Ejemplo de evento",
+      "Logo": 1,
+      "Descripcion": "Descripción del evento",
+      "Web": "https://www.ejemplo.com",
+      "InitDate": "2024-01-31",
+      "EndDate": "2024-02-01",
+      "State": "Completado",
+      "IDUser": 123,
+      "IsManager": true,
+      "IDFamily": 456
+    },
+    {
+      "Title": "Reunión de equipo",
+      "Logo": 2,
+      "Descripcion": "Reunión semanal para discutir proyectos",
+      "Web": "https://www.empresa.com/reunion",
+      "InitDate": "2024-02-05",
+      "EndDate": "2024-02-05",
+      "State": "En Curso",
+      "IDUser": 456,
+      "IsManager": false,
+      "IDFamily": 789
+    },
+    {
+      "Title": "Fiesta de cumpleaños",
+      "Logo": 3,
+      "Descripcion": "Celebración del cumpleaños de Juan",
+      "Web": "",
+      "InitDate": "2024-03-15",
+      "EndDate": "2024-03-16",
+      "State": "Pendiente",
+      "IDUser": 789,
+      "IsManager": true,
+      "IDFamily": 123
+    },
+    {
+      "Title": "Conferencia de tecnología",
+      "Logo": 4,
+      "Descripcion": "Evento anual sobre las últimas tendencias tecnológicas",
+      "Web": "https://www.conferencia-tech.com",
+      "InitDate": "2024-04-20",
+      "EndDate": "2024-04-22",
+      "State": "Completado",
+      "IDUser": 123,
+      "IsManager": true,
+      "IDFamily": 456
+    }
+  ]
+}

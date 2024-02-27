@@ -1,7 +1,8 @@
 package ConsultasBD.InsertarDatos;
 
 import Singleton.EmfSingleton;
-import classes.Insertar.DatosInsertarFavourite;
+import classes.Insertar.Favourites.DatosInsertarFavourite;
+import classes.Insertar.Favourites.Favourite;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import entities.FavouriteEntity;
@@ -12,27 +13,28 @@ import libs.FicheroEscribible;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class InsertarFavoritos {
 
-    public static ArrayList<DatosInsertarFavourite> favoritosInsertar = new ArrayList<>();
-
     public static void insertarFavoritos() {
         Path p = Path.of("src/main/resources/jsonTablas/insertFavourite.json");
+        DatosInsertarFavourite favouritesInsertar;
+        String txtJson;
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {
+                txtJson = Files.readString(p);
                 Gson gson = new Gson();
-                favoritosInsertar = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarFavourite>>() {
-                }.getType());
+                favouritesInsertar = gson.fromJson(txtJson, DatosInsertarFavourite.class);
 
                 EntityManagerFactory emf = EmfSingleton.getInstance().getEmf();
                 EntityManager em = emf.createEntityManager();
                 em.getTransaction().begin();
 
-                for (DatosInsertarFavourite datos : favoritosInsertar) {
+                for (Favourite datos : favouritesInsertar.getFavourites()) {
                     if (!existeFavorito(em, datos.getIdProject(), datos.getIdUser())) {
                         FavouriteEntity favouriteEntity = new FavouriteEntity();
                         favouriteEntity.setIdProject(datos.getIdProject());

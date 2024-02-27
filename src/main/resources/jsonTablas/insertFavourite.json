@@ -1,11 +1,12 @@
-[
+{
+  "favourites":[
     {
       "IdProject": 1,
       "IdUser": 1
     },
     {
       "IdProject": 2,
-      "IdUser": 2
+      "IdUser": 5
     }
-]
-
+  ]
+}

@@ -1,7 +1,8 @@
 package ConsultasBD.InsertarDatos;
 
 import Singleton.EmfSingleton;
-import classes.Insertar.DatosInsertarTechnology;
+import classes.Insertar.Tecnologias.DatosInsertarTechnology;
+import classes.Insertar.Tecnologias.Tecnologia;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import entities.TechnologyEntity;
@@ -12,27 +13,28 @@ import libs.FicheroEscribible;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class InsertarTecnologias {
 
-    public static ArrayList<DatosInsertarTechnology> tecnologiasInsertar = new ArrayList<>();
-
     public static void insertarTecnologias() {
         Path p = Path.of("src/main/resources/jsonTablas/insertTechnology.json");
+        DatosInsertarTechnology tecnologiasInsertar;
+        String txtJson;
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {
+                txtJson = Files.readString(p);
                 Gson gson = new Gson();
-                tecnologiasInsertar = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarTechnology>>() {
-                }.getType());
+                tecnologiasInsertar = gson.fromJson(txtJson, DatosInsertarTechnology.class);
 
                 EntityManagerFactory emf = EmfSingleton.getInstance().getEmf();
                 EntityManager em = emf.createEntityManager();
                 em.getTransaction().begin();
 
-                for (DatosInsertarTechnology datos : tecnologiasInsertar) {
+                for (Tecnologia datos : tecnologiasInsertar.getTechnologies()) {
                     if (!existeTecnologia(em, datos.getTag())) {
                         TechnologyEntity technologyEntity = new TechnologyEntity();
                         technologyEntity.setTag(datos.getTag());

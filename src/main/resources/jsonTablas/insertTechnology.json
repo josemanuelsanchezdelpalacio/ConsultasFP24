@@ -1,4 +1,5 @@
-[
+{
+  "technologies": [
     {
       "Tag": "Tech001",
       "TechName": "Sample Technology 1"
@@ -7,5 +8,5 @@
       "Tag": "Tech002",
       "TechName": "Sample Technology 2"
     }
-]
-
+  ]
+}

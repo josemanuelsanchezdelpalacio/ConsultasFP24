@@ -1,4 +1,5 @@
-[
+{
+  "families":[
     {
       "FamilyCode": "200",
       "FamilyName": "Familia200"
@@ -7,4 +8,5 @@
       "FamilyCode": "210",
       "FamilyName": "Familia210"
     }
-]
+  ]
+}
