@@ -1,9 +1,5 @@
 package classes.Insertar.Proyecto;
 
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlType;
-
 import java.util.Date;
 
 public class Proyecto {
@@ -15,19 +11,25 @@ public class Proyecto {
     private String State;
     private Date InitDate;
     private Date EndDate;
+    private int IDUser;
+    private boolean IsManager;
+    private int IDFamily;
 
 
     public Proyecto() {
     }
 
-    public Proyecto(String title, int logo, String web, String Descripcion, String state, Date initDate, Date endDate) {
-        this.Title = title;
-        this.Logo = logo;
-        this.Web = web;
-        this.Descripcion = Descripcion;
-        this.State = state;
-        this.InitDate = initDate;
-        this.EndDate = endDate;
+    public Proyecto(String title, int logo, String web, String descripcion, String state, Date initDate, Date endDate, int idUser, boolean isManager, int idFamily) {
+        Title = title;
+        Logo = logo;
+        Web = web;
+        Descripcion = descripcion;
+        State = state;
+        InitDate = initDate;
+        EndDate = endDate;
+        IDUser = idUser;
+        IsManager = isManager;
+        IDFamily = idFamily;
     }
 
     public String getTitle() {
@@ -84,5 +86,29 @@ public class Proyecto {
 
     public void setEndDate(Date endDate) {
         this.EndDate = endDate;
+    }
+
+    public int getIdUser() {
+        return IDUser;
+    }
+
+    public void setIdUser(int idUser) {
+        IDUser = idUser;
+    }
+
+    public boolean isManager() {
+        return IsManager;
+    }
+
+    public void setManager(boolean manager) {
+        IsManager = manager;
+    }
+
+    public int getIDFamily() {
+        return IDFamily;
+    }
+
+    public void setIDFamily(int IDFamily) {
+        this.IDFamily = IDFamily;
     }
 }

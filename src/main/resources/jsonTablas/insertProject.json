@@ -47,6 +47,18 @@
       "IDUser": 123,
       "IsManager": true,
       "IDFamily": 456
+    },
+    {
+      "Title": "cumple de mario",
+      "Logo": 5,
+      "Descripcion": "Evento anual sobre las últimas tendencias tecnológicas",
+      "Web": "https://www.conferencia-tech.com",
+      "InitDate": "2024-04-20",
+      "EndDate": "2024-04-22",
+      "State": "Completado",
+      "IDUser": 5,
+      "IsManager": true,
+      "IDFamily": 23
     }
   ]
 }
