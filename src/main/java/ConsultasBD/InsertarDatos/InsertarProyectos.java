@@ -43,16 +43,22 @@ public class InsertarProyectos {
                         projectEntity.setState(datos.getState());
                         projectEntity.setInitDate(datos.getInitDate());
                         projectEntity.setEndDate(datos.getEndDate());
-                        //CollaborationEntity collaborationEntity = new CollaborationEntity();
-                        //collaborationEntity.setManager(true);
-                        //TODO COGER DESDE EL JSON
-                        //collaborationEntity.setIdUser();
-                        //collaborationEntity.setIdFamily();
-                        //TODO SELECT A PROJECT QUE HEMOS INSERTADO PARA RECUPERAR EL ID
-                        //collaborationEntity.setIdProject();
-
                         em.persist(projectEntity);
+
                         System.out.println("Proyecto con título " + datos.getTitle() + " ha sido insertado correctamente");
+                        CollaborationEntity collaborationEntity = new CollaborationEntity();
+                        collaborationEntity.setManager(datos.isManager());
+                        collaborationEntity.setIdUser(datos.getIdUser());
+                        collaborationEntity.setIdFamily(datos.getIDFamily());
+                        Query query = em.createQuery("select e.id from ProjectEntity e where e.title = :title");
+                        query.setParameter("title", datos.getTitle());
+                        int idProject = (int) query.getSingleResult();
+                        collaborationEntity.setIdProject(idProject);
+
+
+                        em.persist(collaborationEntity);
+                        System.out.println("Colaboración creada correctamente.");
+
                     }
                 }
 
