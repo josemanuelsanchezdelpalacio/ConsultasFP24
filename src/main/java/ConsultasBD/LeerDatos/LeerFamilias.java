@@ -3,32 +3,37 @@ package ConsultasBD.LeerDatos;
 import classes.Insertar.Families.Family;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import entities.FamilyEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import libs.FicheroEscribible;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LeerFamilias {
 
     public static void leerFamilias() {
-        ArrayList<Family> familiasLeer = new ArrayList<>();
-        Path p = Path.of("src/main/resources/jsonTablas/insertFamily.json");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+        EntityManager em = emf.createEntityManager();
 
-        if (FicheroEscribible.ficheroLegible(p)) {
-            try {
-                Gson gson = new Gson();
-                familiasLeer = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<Family>>() {
-                }.getType());
+        try {
+            List<FamilyEntity> familiasLeer = em.createQuery("SELECT f FROM FamilyEntity f", FamilyEntity.class).getResultList();
 
-                for (Family dato : familiasLeer) {
-                    System.out.println("FamilyCode: " + dato.getFamilyCode());
-                    System.out.println("FamilyName: " + dato.getFamilyName());
-                }
-            } catch (IOException e) {
-                System.out.println("Error al cargar los datos del fichero");
+            for (FamilyEntity familia : familiasLeer) {
+                System.out.println("FamilyCode: " + familia.getFamilyCode());
+                System.out.println("FamilyName: " + familia.getFamilyName());
             }
+        } catch (Exception e) {
+            System.out.println("Error al leer las familias desde la base de datos");
+            e.printStackTrace();
+        } finally {
+            em.close();
+            emf.close();
         }
     }
 }

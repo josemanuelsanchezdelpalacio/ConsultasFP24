@@ -4,34 +4,44 @@ import classes.Insertar.Colaboraciones.Colaboracion;
 import classes.Insertar.Colaboraciones.DatosInsertarCollaboration;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import conexiones.ConexionMySQL;
+import entities.CollaborationEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import libs.FicheroEscribible;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LeerColaboraciones {
 
     public static void leerColaboraciones() {
-        ArrayList<Colaboracion> colaboracionesLeer = new ArrayList<>();
-        Path p = Path.of("src/main/resources/jsonTablas/insertCollaboration.json");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+        EntityManager em = emf.createEntityManager();
 
-        if (FicheroEscribible.ficheroLegible(p)) {
-            try {
-                Gson gson = new Gson();
-                colaboracionesLeer = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarCollaboration>>() {
-                }.getType());
+        try {
+            List<CollaborationEntity> colaboracionesLeer = em.createQuery("SELECT c FROM CollaborationEntity c", CollaborationEntity.class).getResultList();
 
-                for (Colaboracion dato : colaboracionesLeer) {
-                    System.out.println("IdProyecto: " + dato.getIdProject());
-                    System.out.println("IdUser: " + dato.getIdUser());
-                    System.out.println("IdFamily: " + dato.getIdFamily());
-                    System.out.println("IsManger: " + dato.isManager());
-                }
-            } catch (IOException e) {
-                System.out.println("Error al cargar los datos del fichero");
+            for (CollaborationEntity colaboracion : colaboracionesLeer) {
+                System.out.println("IdProyecto: " + colaboracion.getIdProject());
+                System.out.println("IdUser: " + colaboracion.getIdUser());
+                System.out.println("IdFamily: " + colaboracion.getIdFamily());
+                System.out.println("IsManager: " + colaboracion.getManager());
             }
+        } catch (Exception e) {
+            System.out.println("Error al leer las colaboraciones desde la base de datos");
+            e.printStackTrace();
+        } finally {
+            em.close();
+            emf.close();
         }
     }
 }

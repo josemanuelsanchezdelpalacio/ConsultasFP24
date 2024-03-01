@@ -4,32 +4,37 @@ import classes.Insertar.Tecnologias.DatosInsertarTechnology;
 import classes.Insertar.Tecnologias.Tecnologia;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import entities.TechnologyEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import libs.FicheroEscribible;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LeerTecnologias {
 
     public static void leerTecnologias() {
-        ArrayList<Tecnologia> tecnologiasLeer = new ArrayList<>();
-        Path p = Path.of("src/main/resources/jsonTablas/insertTechnology.json");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+        EntityManager em = emf.createEntityManager();
 
-        if (FicheroEscribible.ficheroLegible(p)) {
-            try {
-                Gson gson = new Gson();
-                tecnologiasLeer = gson.fromJson(new FileReader(p.toFile()), new TypeToken<ArrayList<DatosInsertarTechnology>>() {
-                }.getType());
+        try {
+            List<TechnologyEntity> tecnologiasLeer = em.createQuery("SELECT t FROM TechnologyEntity t", TechnologyEntity.class).getResultList();
 
-                for (Tecnologia dato : tecnologiasLeer) {
-                    System.out.println("IdProject: " + dato.getTag());
-                    System.out.println("IdTechnology: " + dato.getTechName());
-                }
-            } catch (IOException e) {
-                System.out.println("Error al cargar los datos del fichero");
+            for (TechnologyEntity tecnologia : tecnologiasLeer) {
+                System.out.println("Tag: " + tecnologia.getTag());
+                System.out.println("TechName: " + tecnologia.getTechName());
             }
+        } catch (Exception e) {
+            System.out.println("Error al leer las tecnologías desde la base de datos");
+            e.printStackTrace();
+        } finally {
+            em.close();
+            emf.close();
         }
     }
 }
