@@ -23,7 +23,7 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent()
                 .withHeaders(headers);
 
-        // Obtener la lista de entidades desde la base de datos
+        //obtengo la lista de entidades desde la base de datos
         String bodyContent = obtenerEntidadesDesdeBaseDeDatos();
 
         String output = String.format("{ \"message\": \"Entidades desde la base de datos:\", \"listaEntidades\": %s }", bodyContent);
@@ -37,7 +37,7 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
         try (Connection conexion = ConexionMySQL.conectar("FP24MJO")) {
             List<Entity> listEntidades = new ArrayList<>();
 
-            // Obtener datos de la tabla Entity
+            //obtengo datos de la tabla Entity
             try (PreparedStatement ps = conexion.prepareStatement("SELECT * FROM Entity");
                  ResultSet rs = ps.executeQuery()) {
 
@@ -52,11 +52,11 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
                 }
             }
 
-            // Crear el objeto Entities y asignar la lista de entidades
+            //creo el objeto Entities y asigno la lista de entidades
             Entities entidades = new Entities();
             entidades.setEntidades(listEntidades);
 
-            // Convertir el objeto Entities a JSON
+            //convierto el el objeto Entities a JSON
             Gson gson = new Gson();
             return gson.toJson(entidades);
         } catch (SQLException e) {
