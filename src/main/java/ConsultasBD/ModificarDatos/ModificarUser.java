@@ -16,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static DTO.leerJson.leerFichero;
+import static libs.FicheroEscribible.leerFichero;
 
 public class ModificarUser {
     public static void modificar() {

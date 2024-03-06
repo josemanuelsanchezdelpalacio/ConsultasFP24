@@ -13,7 +13,7 @@ import jakarta.persistence.Persistence;
 import java.nio.file.Path;
 import java.sql.*;
 
-import static DTO.leerJson.leerFichero;
+import static libs.FicheroEscribible.leerFichero;
 
 public class ModificarProject {
     public static void modificar() {
