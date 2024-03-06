@@ -26,7 +26,7 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
         //obtengo la lista de entidades desde la base de datos
         String bodyContent = obtenerEntidadesDesdeBaseDeDatos();
 
-        String output = String.format("{ \"message\": \"Entidades desde la base de datos:\", \"listaEntidades\": %s }", bodyContent);
+        String output = String.format("{ \"message\": \"Entidades:\", \"listaEntidades\": %s }", bodyContent);
 
         return response
                 .withStatusCode(200)
