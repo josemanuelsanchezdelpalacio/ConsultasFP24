@@ -2,8 +2,7 @@ import ConsultasBD.EliminarDatosBD.EliminarCentros;
 import ConsultasBD.EliminarDatosBD.EliminarFamilias;
 import ConsultasBD.EliminarDatosBD.EliminarProject;
 import ConsultasBD.InsertarDatos.*;
-import ConsultasBD.LeerDatos.LeerPorFiltro.LeerEntityFiltrado;
-import ConsultasBD.LeerDatos.LeerPorFiltro.LeerProyectoFiltrado;
+import ConsultasBD.LeerDatos.LeerPorFiltro.*;
 import ConsultasBD.LeerDatos.LeerTablaCompleta.*;
 import ConsultasBD.ModificarDatos.ModificarEntity;
 import ConsultasBD.ModificarDatos.ModificarProject;
@@ -25,8 +24,13 @@ public class Main {
             System.out.println("6. Leer Proyectos");
             System.out.println("7. Leer Tecnologías");
             System.out.println("8. Leer Usuarios");
-            System.out.println("9. Leer Proyectos por filtro");
-            System.out.println("10. Leer Entidades por filtro");
+            System.out.println("9. Leer Proyect por filtro");
+            System.out.println("10. Leer Entidad por filtro");
+            System.out.println("11. Leer Familia por filtro");
+            System.out.println("12. Leer Colaboraciónes por proyecto");
+            System.out.println("13. Leer Favoritos por usuario");
+            System.out.println("14. Leer Usuario");
+
             System.out.println("18. Insertar Familias");
             System.out.println("19. Insertar Proyectos");
             System.out.println("20. Insertar Entidades");
@@ -58,6 +62,10 @@ public class Main {
                 case 8 -> LeerUsuarios.leerUsuarios();
                 case 9 -> LeerProyectoFiltrado.filtrarProyecto();
                 case 10 -> LeerEntityFiltrado.filtrarEntity();
+                case 11 -> LeerFamilyFiltrada.filtrarFamily();
+                case 12 -> LeerCollaborationsProject.filtarCollaboratiosPorProject();
+                case 13 -> LeerFavoritosPorUser.filtrarFavoritos();
+                case 14 -> LeerUser.filtrarUser();
                 case 18 -> InsertarFamilias.insertarFamilias();
                 case 19 -> InsertarProyectos.insertarProyectos();
                 case 20 -> InsertarEntidades.insertarEntidades();

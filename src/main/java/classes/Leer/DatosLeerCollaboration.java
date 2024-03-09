@@ -1,10 +1,13 @@
-package classes.Leer.Projects;
+package classes.Leer;
 
-public class DatosLeerProjects {
+public class DatosLeerCollaboration {
     private String title;
 
-    public DatosLeerProjects(String title) {
+    public DatosLeerCollaboration(String title) {
         this.title = title;
+    }
+
+    public DatosLeerCollaboration() {
     }
 
     public String getTitle() {
@@ -15,4 +18,3 @@ public class DatosLeerProjects {
         this.title = title;
     }
 }
-

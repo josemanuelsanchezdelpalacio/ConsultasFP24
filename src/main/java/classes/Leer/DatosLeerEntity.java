@@ -1,4 +1,4 @@
-package classes.Leer.Entities;
+package classes.Leer;
 
 public class DatosLeerEntity {
 

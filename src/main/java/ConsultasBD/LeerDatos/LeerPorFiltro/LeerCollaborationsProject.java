@@ -1,8 +1,11 @@
 package ConsultasBD.LeerDatos.LeerPorFiltro;
 
+import classes.Leer.DatosLeerEntity;
 import classes.Leer.DatosLeerProjects;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entities.CollaborationEntity;
+import entities.EntityEntity;
 import entities.ProjectEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -16,12 +19,12 @@ import java.util.List;
 
 import static libs.FicheroEscribible.leerFichero;
 
-public class LeerProyectoFiltrado {
+public class LeerCollaborationsProject {
 
-    public static void filtrarProyecto(){
+    public static void filtarCollaboratiosPorProject(){
 
         //Obtengo los datos del json con los proyectos a buscar
-        Path p = Path.of("src/main/resources/jsonLeer/leerProyecto.json");
+        Path p = Path.of("src/main/resources/jsonLeer/leerColaborationsProject.json");
         String textoJsonProjects = leerFichero(p);
         Gson gson = new GsonBuilder().create();
         DatosLeerProjects[] listaLeerProjects = gson.fromJson(textoJsonProjects, DatosLeerProjects[].class);
@@ -33,7 +36,7 @@ public class LeerProyectoFiltrado {
 
         for(DatosLeerProjects proyecto: listaLeerProjects){
             String title = proyecto.getTitle();
-
+            int idProject = 0;
             //Busco los proyectos por su titulo
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<ProjectEntity> cq = cb.createQuery(ProjectEntity.class);
@@ -43,17 +46,34 @@ public class LeerProyectoFiltrado {
             //Obtengo la lista de resultados
             List<ProjectEntity> listaProjectsEntity = em.createQuery(cq).getResultList();
             if(!listaProjectsEntity.isEmpty()){
-                System.out.println("Proyecto encontrados: ");
                 for(ProjectEntity project : listaProjectsEntity) {
-
-                    System.out.println("Id del proyecto: " + project.getId());
-                    System.out.println("Titulo del proyecto: " + project.getTitle());
-                    System.out.println("Web del proyecto: " + project.getWeb());
-                    System.out.println("Descripción del proyecto: " + project.getProjectDescription());
-                    System.out.println("Estado del proyecto: " + project.getState());
-                    System.out.println("Fecha de inicio: " + project.getEndDate());
-                    System.out.println("Fecha de fin: " + project.getEndDate());
+                    idProject = project.getId();
                 }
+                //Creamos un CriteriaBuilder para poder buscar por el id del proyecto
+                CriteriaBuilder cb1 = em.getCriteriaBuilder();
+                CriteriaQuery<CollaborationEntity> cq1 = cb1.createQuery(CollaborationEntity.class);
+                Root<CollaborationEntity> root1 = cq1.from(CollaborationEntity.class);
+                cq1.select(root1).where(cb1.equal(root1.get("idProject"), idProject));
+                List<CollaborationEntity> listaCollaborationsEntity = em.createQuery(cq1).getResultList();
+                if(!listaCollaborationsEntity.isEmpty()){
+                    for(CollaborationEntity collaboration : listaCollaborationsEntity) {
+                        System.out.println("Id de la colaboración: " + collaboration.getId());
+                        System.out.println("Id del proyecto: " + collaboration.getIdProject());
+                        System.out.println("Id del usuario: " + collaboration.getIdUser());
+                        System.out.println("Id de la familia: " + collaboration.getIdFamily());
+                        if (collaboration.getManager()) {
+                            System.out.println("Manager del proyecto: Si");
+                        } else {
+                            System.out.println("Manager del proyecto: No");
+                        }
+                    }
+                }else{
+
+                    System.out.println("El proyecto aun no tiene colaboraciones: ");
+
+
+                }
+
             }else{
                 System.out.println("No se ha encontrado ningún proyecto.");
             }
