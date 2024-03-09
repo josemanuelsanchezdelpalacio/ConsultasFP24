@@ -1,4 +1,4 @@
-package ConsultasBD.LeerDatos;
+package ConsultasBD.LeerDatos.LeerTablaCompleta;
 
 import classes.Insertar.Entities.DatosInsertarEntity;
 import classes.Insertar.Entities.Entity;

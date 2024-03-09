@@ -1,4 +1,4 @@
-package ConsultasBD.LeerDatos;
+package ConsultasBD.LeerDatos.LeerTablaCompleta;
 
 import classes.Insertar.Colaboraciones.Colaboracion;
 import classes.Insertar.Colaboraciones.DatosInsertarCollaboration;

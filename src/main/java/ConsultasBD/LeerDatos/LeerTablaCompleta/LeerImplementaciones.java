@@ -1,4 +1,4 @@
-package ConsultasBD.LeerDatos;
+package ConsultasBD.LeerDatos.LeerTablaCompleta;
 
 import classes.Insertar.Implementaciones.DatosInsertarImplement;
 import classes.Insertar.Implementaciones.Implementacion;

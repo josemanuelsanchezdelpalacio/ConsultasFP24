@@ -1,4 +1,4 @@
-package ConsultasBD.LeerDatos;
+package ConsultasBD.LeerDatos.LeerTablaCompleta;
 
 import classes.Insertar.Families.Family;
 import com.google.gson.Gson;

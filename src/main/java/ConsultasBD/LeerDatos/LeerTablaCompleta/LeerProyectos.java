@@ -1,4 +1,4 @@
-package ConsultasBD.LeerDatos;
+package ConsultasBD.LeerDatos.LeerTablaCompleta;
 
 import classes.Insertar.Proyecto.DatosInsertarProject;
 import classes.Insertar.Proyecto.Proyecto;
