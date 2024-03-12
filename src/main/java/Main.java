@@ -45,8 +45,7 @@ public class Main {
             System.out.println("29. Modificar entidades");
             System.out.println("30. Modificar proyectos");
             System.out.println("31. Modificar usuarios");
-            System.out.println("32. Leer JSON");
-            System.out.println("33. Subir Proyectos");
+
             System.out.println("0. Volver al menú principal");
 
             opcion = Leer.pedirEntero("Introduce una opcion: ");
@@ -83,8 +82,6 @@ public class Main {
                 case 30 -> ModificarProject.modificar();
                 case 31 -> ModificarUser.modificar();
 
-//                case 32 -> DTO.leerJson.leer();
-//                case 33 -> EntityaBD.ProjectsBD.subirProyectos();
                 case 0 -> salir = true;
                 default -> System.out.println("Opcion no valida");
             }
