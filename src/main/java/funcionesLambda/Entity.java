@@ -7,7 +7,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Entity {
+class Entity {
 
     @XmlElement
     private String entityName;
@@ -21,15 +21,7 @@ public class Entity {
     @XmlElement
     private String email;
 
-    public Entity(String entityName, String entityCode, String web, String email) {
-        this.entityName = entityName;
-        this.entityCode = entityCode;
-        this.web = web;
-        this.email = email;
-    }
-
     public Entity() {
-
     }
 
     public String getEntityName() {

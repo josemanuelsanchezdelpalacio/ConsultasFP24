@@ -1,5 +1,6 @@
 package funcionesLambda;
 
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
@@ -11,7 +12,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
@@ -23,7 +27,7 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent()
                 .withHeaders(headers);
 
-        //obtengo la lista de entidades desde la base de datos
+        // Obtener entidades desde la base de datos
         String bodyContent = obtenerEntidadesDesdeBaseDeDatos();
 
         String output = String.format("{ \"message\": \"Entidades:\", \"listaEntidades\": %s }", bodyContent);
@@ -37,7 +41,7 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
         try (Connection conexion = ConexionMySQL.conectar("FP24MJO")) {
             List<Entity> listEntidades = new ArrayList<>();
 
-            //obtengo datos de la tabla Entity
+            // Consultar datos de la tabla Entity
             try (PreparedStatement ps = conexion.prepareStatement("SELECT * FROM Entity");
                  ResultSet rs = ps.executeQuery()) {
 
@@ -52,11 +56,9 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
                 }
             }
 
-            //creo el objeto Entities y asigno la lista de entidades
             Entities entidades = new Entities();
             entidades.setEntidades(listEntidades);
 
-            //convierto el el objeto Entities a JSON
             Gson gson = new Gson();
             return gson.toJson(entidades);
         } catch (SQLException e) {

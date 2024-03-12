@@ -22,4 +22,3 @@ public class Entities {
         this.entidades = entidades;
     }
 }
-
