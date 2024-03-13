@@ -1,6 +1,5 @@
 package funcionesLambda;
 
-
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
@@ -24,43 +23,44 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
         headers.put("Content-Type", "application/json");
         headers.put("X-Custom-Header", "application/json");
 
-        APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent()
-                .withHeaders(headers);
+        APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent().withHeaders(headers);
 
-        // Obtener entidades desde la base de datos
-        String bodyContent = obtenerEntidadesDesdeBaseDeDatos();
+        //obtengo proyectos desde la base de datos
+        String bodyContent = obtenerProyectosDesdeBaseDeDatos();
 
-        String output = String.format("{ \"message\": \"Entidades:\", \"listaEntidades\": %s }", bodyContent);
+        String output = String.format("{ \"message\": \"Proyectos:\", \"listaProyectos\": %s }", bodyContent);
 
-        return response
-                .withStatusCode(200)
-                .withBody(output);
+        return response.withStatusCode(200).withBody(output);
     }
 
-    public static String obtenerEntidadesDesdeBaseDeDatos() {
+    public static String obtenerProyectosDesdeBaseDeDatos() {
         try (Connection conexion = ConexionMySQL.conectar("FP24MJO")) {
-            List<Entity> listEntidades = new ArrayList<>();
+            List<Project> listaProyectos = new ArrayList<>();
 
-            // Consultar datos de la tabla Entity
-            try (PreparedStatement ps = conexion.prepareStatement("SELECT * FROM ENTITY");
+            //consulto los datos de la tabla Project
+            try (PreparedStatement ps = conexion.prepareStatement("SELECT * FROM PROJECT");
                  ResultSet rs = ps.executeQuery()) {
 
                 while (rs.next()) {
-                    Entity entidad = new Entity();
-                    entidad.setEntityName(rs.getString("entityName"));
-                    entidad.setEntityCode(rs.getString("entityCode"));
-                    entidad.setWeb(rs.getString("web"));
-                    entidad.setEmail(rs.getString("email"));
+                    Project proyecto = new Project();
+                    proyecto.setTitle(rs.getString("Title"));
+                    proyecto.setLogo(rs.getBytes("Logo"));
+                    proyecto.setWeb(rs.getString("Web"));
+                    proyecto.setProjectDescription(rs.getString("ProjectDescription"));
+                    proyecto.setState(rs.getString("State"));
+                    proyecto.setInitDate(rs.getDate("InitDate"));
+                    proyecto.setEndDate(rs.getDate("EndDate"));
 
-                    listEntidades.add(entidad);
+                    listaProyectos.add(proyecto);
                 }
             }
 
-            Entities entidades = new Entities();
-            entidades.setEntidades(listEntidades);
+            Projects proyectos = new Projects();
+            proyectos.setProyectos(listaProyectos);
 
+            //paso los datos a GSON
             Gson gson = new Gson();
-            return gson.toJson(entidades);
+            return gson.toJson(proyectos);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
