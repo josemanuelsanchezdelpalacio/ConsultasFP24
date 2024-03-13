@@ -24,12 +24,9 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
         headers.put("X-Custom-Header", "application/json");
 
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent().withHeaders(headers);
-
         //obtengo proyectos desde la base de datos
         String bodyContent = obtenerProyectosDesdeBaseDeDatos();
-
         String output = String.format("{ \"message\": \"Proyectos:\", \"listaProyectos\": %s }", bodyContent);
-
         return response.withStatusCode(200).withBody(output);
     }
 

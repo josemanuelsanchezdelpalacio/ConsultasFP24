@@ -19,8 +19,8 @@ import java.util.Map;
 public class lambdaParametros implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context) {
-        String parametro1 = input.getQueryStringParameters().get("parametro1");
-        String parametro2 = input.getQueryStringParameters().get("parametro2");
+        String entityName = input.getQueryStringParameters().get("entityName");
+        String entityCode = input.getQueryStringParameters().get("entityCode");
 
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
@@ -28,7 +28,7 @@ public class lambdaParametros implements RequestHandler<APIGatewayProxyRequestEv
 
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent().withHeaders(headers);
 
-        String bodyContent = obtenerEntidadesDesdeBaseDeDatos(parametro1, parametro2);
+        String bodyContent = obtenerEntidadesDesdeBaseDeDatos(entityName, entityCode);
 
         String output = String.format("{ \"message\": \"Entidades:\", \"listaEntidades\": %s }", bodyContent);
 
