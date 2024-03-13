@@ -42,7 +42,7 @@ public class lambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGa
             List<Entity> listEntidades = new ArrayList<>();
 
             // Consultar datos de la tabla Entity
-            try (PreparedStatement ps = conexion.prepareStatement("SELECT * FROM Entity");
+            try (PreparedStatement ps = conexion.prepareStatement("SELECT * FROM ENTITY");
                  ResultSet rs = ps.executeQuery()) {
 
                 while (rs.next()) {
