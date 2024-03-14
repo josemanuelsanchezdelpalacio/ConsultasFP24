@@ -18,9 +18,11 @@ import java.util.List;
 
 public class LeerEntidades {
 
-    public static void leerEntidades() {
+    public static String leerEntidades() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
+        String jsonSalidaEntidades = "";
+        Gson gson = new Gson();
 
         try {
             List<EntityEntity> entidadesLeer = em.createQuery("SELECT e FROM EntityEntity e", EntityEntity.class).getResultList();
@@ -31,12 +33,14 @@ public class LeerEntidades {
                 System.out.println("Web: " + entidad.getWeb());
                 System.out.println("Email: " + entidad.getEmail());
             }
+            jsonSalidaEntidades = gson.toJson(entidadesLeer);
         } catch (Exception e) {
             System.out.println("Error al leer las entidades desde la base de datos");
-            e.printStackTrace();
+
         } finally {
             em.close();
             emf.close();
         }
+        return jsonSalidaEntidades;
     }
 }

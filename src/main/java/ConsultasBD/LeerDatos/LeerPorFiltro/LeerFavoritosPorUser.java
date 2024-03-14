@@ -20,13 +20,14 @@ import static libs.FicheroEscribible.leerFichero;
 
 public class LeerFavoritosPorUser {
 
-    public static void filtrarFavoritos(){
+    public static String filtrarFavoritos(){
 
         //Obtengo los datos del json con los entities a buscar
         Path p = Path.of("src/main/resources/jsonLeer/leerFavoritosUser.json");
         String textoJsonEntities = leerFichero(p);
         Gson gson = new GsonBuilder().create();
         DatosLeerFavoritos[] listaLeerFav = gson.fromJson(textoJsonEntities, DatosLeerFavoritos[].class);
+        String jsonSalidaFavoritos = "";
 
         //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -53,12 +54,14 @@ public class LeerFavoritosPorUser {
                     System.out.println("Id del usuario: " + fav.getIdUser() + "\n");
 
                 }
+                jsonSalidaFavoritos = gson.toJson(listaFavouritesEntity);
             }else{
                 System.out.println("El usuario no tiene favoritos.");
             }
 
 
         }
+        return textoJsonEntities;
     }
 
 }

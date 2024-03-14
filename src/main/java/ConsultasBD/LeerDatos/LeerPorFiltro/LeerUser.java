@@ -18,13 +18,14 @@ import static libs.FicheroEscribible.leerFichero;
 
 public class LeerUser {
 
-    public static void filtrarUser(){
+    public static String filtrarUser(){
 
         //Obtengo los datos del json con los entities a buscar
         Path p = Path.of("src/main/resources/jsonLeer/leerUser.json");
         String textoJsonUser = leerFichero(p);
         Gson gson = new GsonBuilder().create();
         DatosLeerUser[] listaLeerUser = gson.fromJson(textoJsonUser, DatosLeerUser[].class);
+        String jsonSalidaUser = "";
 
         //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -56,9 +57,11 @@ public class LeerUser {
                     System.out.println("LinkedIn del usuario: " + user.getLinkedIn() + "\n");
 
                 }
+                jsonSalidaUser = gson.toJson(listaUserEntity);
             }else{
                 System.out.println("El usuario no existe.");
             }
         }
+        return textoJsonUser;
     }
 }

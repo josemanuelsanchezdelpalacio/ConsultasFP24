@@ -17,9 +17,11 @@ import java.util.List;
 
 public class LeerFamilias {
 
-    public static void leerFamilias() {
+    public static String leerFamilias() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
+        String jsonSalidaFamilias = "";
+        Gson gson = new Gson();
 
         try {
             List<FamilyEntity> familiasLeer = em.createQuery("SELECT f FROM FamilyEntity f", FamilyEntity.class).getResultList();
@@ -28,12 +30,14 @@ public class LeerFamilias {
                 System.out.println("FamilyCode: " + familia.getFamilyCode());
                 System.out.println("FamilyName: " + familia.getFamilyName());
             }
+            jsonSalidaFamilias = gson.toJson(familiasLeer);
         } catch (Exception e) {
             System.out.println("Error al leer las familias desde la base de datos");
-            e.printStackTrace();
+
         } finally {
             em.close();
             emf.close();
         }
+        return jsonSalidaFamilias;
     }
 }

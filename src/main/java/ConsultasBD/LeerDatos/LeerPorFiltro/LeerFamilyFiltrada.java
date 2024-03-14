@@ -20,13 +20,14 @@ import static libs.FicheroEscribible.leerFichero;
 
 public class LeerFamilyFiltrada {
 
-    public static void filtrarFamily(){
+    public static String filtrarFamily(){
 
         //Obtengo los datos del json con la familia a buscar
         Path p = Path.of("src/main/resources/jsonLeer/leerFamily.json");
         String textoJsonProjects = leerFichero(p);
         Gson gson = new GsonBuilder().create();
         DatosLeerFamily[] listaLeerFamilia = gson.fromJson(textoJsonProjects, DatosLeerFamily[].class);
+        String jsonSalidaFamily = "";
 
         //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -52,11 +53,13 @@ public class LeerFamilyFiltrada {
                     System.out.println("Nombre de la familia: " + familia.getFamilyName());
 
                 }
+                jsonSalidaFamily = gson.toJson(listaFamilyEntity);
             }else{
                 System.out.println("No se ha encontrado ningúna familia.");
             }
             em.close();
             emf.close();
         }
+        return jsonSalidaFamily;
     }
 }

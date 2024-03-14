@@ -21,13 +21,14 @@ import static libs.FicheroEscribible.leerFichero;
 
 public class LeerCollaborationsProject {
 
-    public static void filtarCollaboratiosPorProject(){
+    public static String filtarCollaboratiosPorProject(){
 
         //Obtengo los datos del json con los proyectos a buscar
         Path p = Path.of("src/main/resources/jsonLeer/leerColaborationsProject.json");
         String textoJsonProjects = leerFichero(p);
         Gson gson = new GsonBuilder().create();
         DatosLeerProjects[] listaLeerProjects = gson.fromJson(textoJsonProjects, DatosLeerProjects[].class);
+        String jsonCollaboratiosn = "";
 
         //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -67,6 +68,8 @@ public class LeerCollaborationsProject {
                             System.out.println("Manager del proyecto: No");
                         }
                     }
+                    jsonCollaboratiosn = gson.toJson(listaCollaborationsEntity);
+
                 }else{
 
                     System.out.println("El proyecto aun no tiene colaboraciones: ");
@@ -81,5 +84,6 @@ public class LeerCollaborationsProject {
             em.close();
             emf.close();
         }
+        return jsonCollaboratiosn;
     }
 }

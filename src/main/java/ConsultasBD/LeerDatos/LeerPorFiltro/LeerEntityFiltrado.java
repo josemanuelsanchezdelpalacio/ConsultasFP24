@@ -18,13 +18,14 @@ import static libs.FicheroEscribible.leerFichero;
 
 public class LeerEntityFiltrado {
 
-    public static void filtrarEntity(){
+    public static String filtrarEntity(){
 
         //Obtengo los datos del json con los entities a buscar
         Path p = Path.of("src/main/resources/jsonLeer/leerEntities.json");
         String textoJsonEntities = leerFichero(p);
         Gson gson = new GsonBuilder().create();
         DatosLeerEntity[] listaLeerEntities = gson.fromJson(textoJsonEntities, DatosLeerEntity[].class);
+        String jsonSalidaEntities = "";
 
         //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -53,11 +54,13 @@ public class LeerEntityFiltrado {
                     System.out.println("Email del centro: " + entity.getEmail() + "\n");
 
                 }
+                jsonSalidaEntities = gson.toJson(listaEntitiesEntity);
             }else{
                 System.out.println("No se ha encontrado ningún centro.");
             }
 
 
         }
+        return jsonSalidaEntities;
     }
 }

@@ -18,13 +18,14 @@ import static libs.FicheroEscribible.leerFichero;
 
 public class LeerProyectoFiltrado {
 
-    public static void filtrarProyecto(){
+    public static String filtrarProyecto(){
 
         //Obtengo los datos del json con los proyectos a buscar
         Path p = Path.of("src/main/resources/jsonLeer/leerProyecto.json");
         String textoJsonProjects = leerFichero(p);
         Gson gson = new GsonBuilder().create();
         DatosLeerProjects[] listaLeerProjects = gson.fromJson(textoJsonProjects, DatosLeerProjects[].class);
+        String jsonSalidaProjects = "";
 
         //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -54,6 +55,7 @@ public class LeerProyectoFiltrado {
                     System.out.println("Fecha de inicio: " + project.getEndDate());
                     System.out.println("Fecha de fin: " + project.getEndDate());
                 }
+                jsonSalidaProjects = gson.toJson(listaProjectsEntity);
             }else{
                 System.out.println("No se ha encontrado ningún proyecto.");
             }
@@ -61,5 +63,6 @@ public class LeerProyectoFiltrado {
             em.close();
             emf.close();
         }
+        return jsonSalidaProjects;
     }
 }

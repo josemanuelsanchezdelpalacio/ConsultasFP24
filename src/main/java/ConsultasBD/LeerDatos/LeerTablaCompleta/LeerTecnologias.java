@@ -21,6 +21,8 @@ public class LeerTecnologias {
     public static void leerTecnologias() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
+        String jsonSalidaTecnologias = "";
+        Gson gson = new Gson();
 
         try {
             List<TechnologyEntity> tecnologiasLeer = em.createQuery("SELECT t FROM TechnologyEntity t", TechnologyEntity.class).getResultList();
@@ -29,9 +31,10 @@ public class LeerTecnologias {
                 System.out.println("Tag: " + tecnologia.getTag());
                 System.out.println("TechName: " + tecnologia.getTechName());
             }
+            jsonSalidaTecnologias = gson.toJson(tecnologiasLeer);
         } catch (Exception e) {
             System.out.println("Error al leer las tecnologías desde la base de datos");
-            e.printStackTrace();
+
         } finally {
             em.close();
             emf.close();

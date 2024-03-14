@@ -18,9 +18,11 @@ import java.util.List;
 
 public class LeerImplementaciones {
 
-    public static void leerImplementaciones() {
+    public static String leerImplementaciones() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
+        String jsonSalidaImplementaciones = "";
+        Gson gson = new Gson();
 
         try {
             List<ImplementEntity> implementLeer = em.createQuery("SELECT imp FROM ImplementEntity imp", ImplementEntity.class).getResultList();
@@ -29,12 +31,14 @@ public class LeerImplementaciones {
                 System.out.println("IdProject: " + implementacion.getIdProject());
                 System.out.println("IdTechnology: " + implementacion.getIdTechnology());
             }
+            jsonSalidaImplementaciones = gson.toJson(implementLeer);
         } catch (Exception e) {
             System.out.println("Error al leer las implementaciones desde la base de datos");
-            e.printStackTrace();
+
         } finally {
             em.close();
             emf.close();
         }
+        return jsonSalidaImplementaciones;
     }
 }
