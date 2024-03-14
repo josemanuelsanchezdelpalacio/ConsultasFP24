@@ -31,11 +31,6 @@ public class LeerTecnologias {
             //Obtengo la lista de tecnologías
             List<TechnologyEntity> tecnologiasLeer = em.createQuery("SELECT t FROM TechnologyEntity t", TechnologyEntity.class).getResultList();
 
-            for (TechnologyEntity tecnologia : tecnologiasLeer) {
-                System.out.println("Tag: " + tecnologia.getTag());
-                System.out.println("TechName: " + tecnologia.getTechName());
-            }
-
             //Creo el json de salida
             jsonSalidaTecnologias = gson.toJson(tecnologiasLeer);
         } catch (Exception e) {

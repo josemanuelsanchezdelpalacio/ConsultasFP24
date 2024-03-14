@@ -46,17 +46,6 @@ public class LeerUser {
             //Obtengo la lista de resultados
             List<UsersEntity> listaUserEntity = em.createQuery(cq).getResultList();
             if(!listaUserEntity.isEmpty()){
-                System.out.println("User encontrado: ");
-                for(UsersEntity user : listaUserEntity) {
-
-                    System.out.println("Id de usuario: " + user.getId());
-                    System.out.println("Id del centro: " + user.getIdEntity());
-                    System.out.println("Nombre del usuario: " + user.getUserName());
-                    System.out.println("Apellido del usuario: " + user.getSurname());
-                    System.out.println("Email del usuario: " + user.getEmail());
-                    System.out.println("LinkedIn del usuario: " + user.getLinkedIn() + "\n");
-
-                }
 
                 //Creo el json de salida
                 jsonSalidaUser = gson.toJson(listaUserEntity);

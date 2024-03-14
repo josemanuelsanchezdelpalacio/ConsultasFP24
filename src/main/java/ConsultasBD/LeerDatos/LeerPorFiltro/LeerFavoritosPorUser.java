@@ -46,14 +46,6 @@ public class LeerFavoritosPorUser {
             //Obtengo la lista de resultados
             List<FavouriteEntity> listaFavouritesEntity = em.createQuery(cq).getResultList();
             if(!listaFavouritesEntity.isEmpty()){
-                System.out.println("Favoritos encontrados: ");
-                for(FavouriteEntity fav : listaFavouritesEntity) {
-
-                    System.out.println("Id de favorito: " + fav.getId());
-                    System.out.println("Id del proyecto: " + fav.getIdProject());
-                    System.out.println("Id del usuario: " + fav.getIdUser() + "\n");
-
-                }
 
                 //Creo el json de salida
                 jsonSalidaFavoritos = gson.toJson(listaFavouritesEntity);

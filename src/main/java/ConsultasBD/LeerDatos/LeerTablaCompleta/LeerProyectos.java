@@ -32,16 +32,6 @@ public class LeerProyectos {
             List<ProjectEntity> proyectosLeer = em.createQuery("SELECT p FROM ProjectEntity p", ProjectEntity.class)
                     .getResultList();
 
-            for (ProjectEntity proyecto : proyectosLeer) {
-                System.out.println("IdProject: " + proyecto.getTitle());
-                System.out.println("Logo: " + proyecto.getLogo());
-                System.out.println("Web: " + proyecto.getWeb());
-                System.out.println("ProjectDescription: " + proyecto.getProjectDescription());
-                System.out.println("State: " + proyecto.getState());
-                System.out.println("InitDate: " + proyecto.getInitDate());
-                System.out.println("EndDate: " + proyecto.getEndDate());
-            }
-
             //Creo el json de salidfa
             jsonSalidaProjects = gson.toJson(proyectosLeer);
         } catch (Exception e) {

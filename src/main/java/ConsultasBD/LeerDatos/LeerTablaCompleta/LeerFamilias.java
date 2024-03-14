@@ -29,11 +29,6 @@ public class LeerFamilias {
             //Obtengo la lista de familias
             List<FamilyEntity> familiasLeer = em.createQuery("SELECT f FROM FamilyEntity f", FamilyEntity.class).getResultList();
 
-            for (FamilyEntity familia : familiasLeer) {
-                System.out.println("FamilyCode: " + familia.getFamilyCode());
-                System.out.println("FamilyName: " + familia.getFamilyName());
-            }
-
             //Creo el json de salida
             jsonSalidaFamilias = gson.toJson(familiasLeer);
         } catch (Exception e) {

@@ -45,14 +45,6 @@ public class LeerFamilyFiltrada {
             //Obtengo la lista de resultados
             List<FamilyEntity> listaFamilyEntity = em.createQuery(cq).getResultList();
             if(!listaFamilyEntity.isEmpty()){
-                System.out.println("Familia encontrada: ");
-                for(FamilyEntity familia : listaFamilyEntity) {
-
-                    System.out.println("Id de la familia: " + familia.getId());
-                    System.out.println("Código de la familia: " + familia.getFamilyCode());
-                    System.out.println("Nombre de la familia: " + familia.getFamilyName());
-
-                }
 
                 //Creo el json de salida
                 jsonSalidaFamily = gson.toJson(listaFamilyEntity);

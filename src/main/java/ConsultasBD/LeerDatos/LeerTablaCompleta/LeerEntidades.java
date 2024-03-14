@@ -30,13 +30,6 @@ public class LeerEntidades {
             //Obtengo la lista de entidades
             List<EntityEntity> entidadesLeer = em.createQuery("SELECT e FROM EntityEntity e", EntityEntity.class).getResultList();
 
-            for (EntityEntity entidad : entidadesLeer) {
-                System.out.println("EntityName: " + entidad.getEntityName());
-                System.out.println("EntityCode: " + entidad.getEntityCode());
-                System.out.println("Web: " + entidad.getWeb());
-                System.out.println("Email: " + entidad.getEmail());
-            }
-
             //Creo el json de salida
             jsonSalidaEntidades = gson.toJson(entidadesLeer);
         } catch (Exception e) {

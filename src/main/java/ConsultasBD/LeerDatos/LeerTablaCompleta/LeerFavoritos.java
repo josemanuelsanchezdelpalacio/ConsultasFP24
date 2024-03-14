@@ -30,11 +30,6 @@ public class LeerFavoritos {
             //obtengo la lista de favoritos
             List<FavouriteEntity> favoritosLeer = em.createQuery("SELECT fav FROM FavouriteEntity fav", FavouriteEntity.class).getResultList();
 
-            for (FavouriteEntity favorito : favoritosLeer) {
-                System.out.println("IdProject: " + favorito.getIdProject());
-                System.out.println("IdUser: " + favorito.getIdUser());
-            }
-
             //Creo el json de salida
             jsonSalidaFavoritos = gson.toJson(favoritosLeer);
         } catch (Exception e) {

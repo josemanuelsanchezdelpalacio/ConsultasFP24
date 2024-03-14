@@ -31,15 +31,6 @@ public class LeerUsuarios {
             //Obtengo la lista de usuarios
             List<UsersEntity> usuariosLeer = em.createQuery("SELECT u FROM UsersEntity u", UsersEntity.class).getResultList();
 
-            for (UsersEntity usuario : usuariosLeer) {
-                System.out.println("IdEntity: " + usuario.getIdEntity());
-                System.out.println("IdLogin: " + usuario.getLogin());
-                System.out.println("UserName: " + usuario.getUserName());
-                System.out.println("Surname: " + usuario.getSurname());
-                System.out.println("Email: " + usuario.getEmail());
-                System.out.println("LinkedIn: " + usuario.getLinkedIn());
-            }
-
             //Creo el json de salida
             jsonSalidaUsers = gson.toJson(usuariosLeer);
         } catch (Exception e) {

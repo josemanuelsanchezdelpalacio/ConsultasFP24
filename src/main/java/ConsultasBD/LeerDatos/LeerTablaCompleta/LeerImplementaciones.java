@@ -31,11 +31,6 @@ public class LeerImplementaciones {
             //obtengo la lista de implementations
             List<ImplementEntity> implementLeer = em.createQuery("SELECT imp FROM ImplementEntity imp", ImplementEntity.class).getResultList();
 
-            for (ImplementEntity implementacion : implementLeer) {
-                System.out.println("IdProject: " + implementacion.getIdProject());
-                System.out.println("IdTechnology: " + implementacion.getIdTechnology());
-            }
-
             //Creo el json de salida
             jsonSalidaImplementaciones = gson.toJson(implementLeer);
         } catch (Exception e) {

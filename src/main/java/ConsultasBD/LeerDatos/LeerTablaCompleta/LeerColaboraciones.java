@@ -31,16 +31,9 @@ public class LeerColaboraciones {
         Gson gson = new Gson();
 
         try {
-
             //Obtengo la lista de colaboraciones
             List<CollaborationEntity> colaboracionesLeer = em.createQuery("SELECT c FROM CollaborationEntity c", CollaborationEntity.class).getResultList();
 
-            for (CollaborationEntity colaboracion : colaboracionesLeer) {
-                System.out.println("IdProyecto: " + colaboracion.getIdProject());
-                System.out.println("IdUser: " + colaboracion.getIdUser());
-                System.out.println("IdFamily: " + colaboracion.getIdFamily());
-                System.out.println("IsManager: " + colaboracion.getManager());
-            }
             //Creo el json de salida
             jsonSalidaProjects = gson.toJson(colaboracionesLeer);
         } catch (Exception e) {

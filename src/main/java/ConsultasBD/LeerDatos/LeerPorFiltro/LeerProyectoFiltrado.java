@@ -44,17 +44,6 @@ public class LeerProyectoFiltrado {
             //Obtengo la lista de resultados
             List<ProjectEntity> listaProjectsEntity = em.createQuery(cq).getResultList();
             if(!listaProjectsEntity.isEmpty()){
-                System.out.println("Proyecto encontrados: ");
-                for(ProjectEntity project : listaProjectsEntity) {
-
-                    System.out.println("Id del proyecto: " + project.getId());
-                    System.out.println("Titulo del proyecto: " + project.getTitle());
-                    System.out.println("Web del proyecto: " + project.getWeb());
-                    System.out.println("Descripción del proyecto: " + project.getProjectDescription());
-                    System.out.println("Estado del proyecto: " + project.getState());
-                    System.out.println("Fecha de inicio: " + project.getEndDate());
-                    System.out.println("Fecha de fin: " + project.getEndDate());
-                }
 
                 //Creo el json de salida
                 jsonSalidaProjects = gson.toJson(listaProjectsEntity);

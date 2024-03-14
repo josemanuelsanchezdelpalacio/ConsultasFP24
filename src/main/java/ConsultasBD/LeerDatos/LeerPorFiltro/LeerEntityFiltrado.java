@@ -44,16 +44,7 @@ public class LeerEntityFiltrado {
             //Obtengo la lista de resultados
             List<EntityEntity> listaEntitiesEntity = em.createQuery(cq).getResultList();
             if(!listaEntitiesEntity.isEmpty()){
-                System.out.println("Centro encontrado: ");
-                for(EntityEntity entity : listaEntitiesEntity) {
 
-                    System.out.println("Id del centro: " + entity.getId());
-                    System.out.println("Nombre del centro: " + entity.getEntityName());
-                    System.out.println("Código del centro: " + entity.getEntityCode());
-                    System.out.println("Web del centro: " + entity.getWeb());
-                    System.out.println("Email del centro: " + entity.getEmail() + "\n");
-
-                }
                 //Creo el json de salida
                 jsonSalidaEntities = gson.toJson(listaEntitiesEntity);
             }else{

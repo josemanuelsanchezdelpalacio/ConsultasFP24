@@ -57,25 +57,9 @@ public class LeerCollaborationsProject {
                 cq1.select(root1).where(cb1.equal(root1.get("idProject"), idProject));
                 List<CollaborationEntity> listaCollaborationsEntity = em.createQuery(cq1).getResultList();
                 if(!listaCollaborationsEntity.isEmpty()){
-                    for(CollaborationEntity collaboration : listaCollaborationsEntity) {
-                        System.out.println("Id de la colaboración: " + collaboration.getId());
-                        System.out.println("Id del proyecto: " + collaboration.getIdProject());
-                        System.out.println("Id del usuario: " + collaboration.getIdUser());
-                        System.out.println("Id de la familia: " + collaboration.getIdFamily());
-                        if (collaboration.getManager()) {
-                            System.out.println("Manager del proyecto: Si");
-                        } else {
-                            System.out.println("Manager del proyecto: No");
-                        }
-                    }
 
                     //Creo el json de salida
                     jsonCollaboratiosn = gson.toJson(listaCollaborationsEntity);
-
-                }else{
-
-                    System.out.println("El proyecto aun no tiene colaboraciones: ");
-
 
                 }
 
