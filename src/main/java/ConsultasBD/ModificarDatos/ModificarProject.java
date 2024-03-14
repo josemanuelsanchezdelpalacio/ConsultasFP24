@@ -17,7 +17,7 @@ import static libs.FicheroEscribible.leerFichero;
 
 public class ModificarProject {
     public static void modificar() {
-        Path p = Path.of("src/main/resources/modifProject.json");
+        Path p = Path.of("src/main/resources/jsonModificar/modifProject.json");
         //leo el archivo JSON
         String textoJsonEmpleados = leerFichero(p);
         //creo un objeto Gson para convertir el JSON a objetos Java

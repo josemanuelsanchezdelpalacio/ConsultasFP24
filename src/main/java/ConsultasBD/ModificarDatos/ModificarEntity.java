@@ -18,7 +18,7 @@ import static libs.FicheroEscribible.leerFichero;
 
 public class ModificarEntity {
     public static void modificar() {
-          Path p = Path.of("src/main/resources/modifEntity.json");
+          Path p = Path.of("src/main/resources/jsonModificar/modifEntity.json");
           //leo el archivo JSON
           String textoJsonEmpleados = leerFichero(p);
           //creo un objeto Gson para convertir el JSON a objetos Java
