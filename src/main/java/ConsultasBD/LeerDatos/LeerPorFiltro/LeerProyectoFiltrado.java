@@ -56,6 +56,7 @@ public class LeerProyectoFiltrado {
                     System.out.println("Fecha de fin: " + project.getEndDate());
                 }
                 jsonSalidaProjects = gson.toJson(listaProjectsEntity);
+                System.out.println(jsonSalidaProjects);
             }else{
                 System.out.println("No se ha encontrado ningún proyecto.");
             }

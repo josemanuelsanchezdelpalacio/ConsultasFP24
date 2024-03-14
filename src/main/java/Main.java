@@ -30,22 +30,20 @@ public class Main {
             System.out.println("12. Leer Colaboraciónes por proyecto");
             System.out.println("13. Leer Favoritos por usuario");
             System.out.println("14. Leer Usuario");
-
-            System.out.println("18. Insertar Familias");
-            System.out.println("19. Insertar Proyectos");
-            System.out.println("20. Insertar Entidades");
-            System.out.println("21. Insertar Usuarios");
-            System.out.println("22. Insertar Tecnologías");
-            System.out.println("23. Insertar Favoritos");
-            System.out.println("24. Insertar Implementaciones");
-            System.out.println("25. Insertar Colaboraciones");
-            System.out.println("26. Eliminar Centro");
-            System.out.println("27. Eliminar Familia");
-            System.out.println("28. Eliminar Proyecto");
-            System.out.println("29. Modificar entidades");
-            System.out.println("30. Modificar proyectos");
-            System.out.println("31. Modificar usuarios");
-
+            System.out.println("15. Insertar Familias");
+            System.out.println("16. Insertar Proyectos");
+            System.out.println("17. Insertar Entidades");
+            System.out.println("18. Insertar Usuarios");
+            System.out.println("19. Insertar Tecnologías");
+            System.out.println("20. Insertar Favoritos");
+            System.out.println("21. Insertar Implementaciones");
+            System.out.println("22. Insertar Colaboraciones");
+            System.out.println("23. Eliminar Centro");
+            System.out.println("24. Eliminar Familia");
+            System.out.println("25. Eliminar Proyecto");
+            System.out.println("26. Modificar entidades");
+            System.out.println("27. Modificar proyectos");
+            System.out.println("28. Modificar usuarios");
             System.out.println("0. Volver al menú principal");
 
             opcion = Leer.pedirEntero("Introduce una opcion: ");
@@ -65,23 +63,20 @@ public class Main {
                 case 12 -> LeerCollaborationsProject.filtarCollaboratiosPorProject();
                 case 13 -> LeerFavoritosPorUser.filtrarFavoritos();
                 case 14 -> LeerUser.filtrarUser();
-                case 18 -> InsertarFamilias.insertarFamilias();
-                case 19 -> InsertarProyectos.insertarProyectos();
-                case 20 -> InsertarEntidades.insertarEntidades();
-                case 21 -> InsertarUsuarios.insertarUsuarios();
-                case 22 -> InsertarTecnologias.insertarTecnologias();
-                case 23 -> InsertarFavoritos.insertarFavoritos();
-                case 24 -> InsertarImplementaciones.insertarImplementaciones();
-                case 25 -> InsertarColaboraciones.insertarColaboraciones();
-
-                case 26 -> EliminarCentros.eliminarCentro();
-                case 27 -> EliminarFamilias.eliminarFamilia();
-                case 28 -> EliminarProject.eliminarProject();
-
-                case 29 -> ModificarEntity.modificar();
-                case 30 -> ModificarProject.modificar();
-                case 31 -> ModificarUser.modificar();
-
+                case 15 -> InsertarFamilias.insertarFamilias();
+                case 16 -> InsertarProyectos.insertarProyectos();
+                case 17 -> InsertarEntidades.insertarEntidades();
+                case 18 -> InsertarUsuarios.insertarUsuarios();
+                case 19 -> InsertarTecnologias.insertarTecnologias();
+                case 20 -> InsertarFavoritos.insertarFavoritos();
+                case 21 -> InsertarImplementaciones.insertarImplementaciones();
+                case 22 -> InsertarColaboraciones.insertarColaboraciones();
+                case 23 -> EliminarCentros.eliminarCentro();
+                case 24 -> EliminarFamilias.eliminarFamilia();
+                case 25 -> EliminarProject.eliminarProject();
+                case 26 -> ModificarEntity.modificar();
+                case 27 -> ModificarProject.modificar();
+                case 28 -> ModificarUser.modificar();
                 case 0 -> salir = true;
                 default -> System.out.println("Opcion no valida");
             }
