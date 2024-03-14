@@ -19,12 +19,16 @@ import java.util.List;
 public class LeerUsuarios {
 
     public static String leerUsuarios() {
+
+        //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
         String jsonSalidaUsers = "";
         Gson gson = new Gson();
 
         try {
+
+            //Obtengo la lista de usuarios
             List<UsersEntity> usuariosLeer = em.createQuery("SELECT u FROM UsersEntity u", UsersEntity.class).getResultList();
 
             for (UsersEntity usuario : usuariosLeer) {
@@ -35,6 +39,8 @@ public class LeerUsuarios {
                 System.out.println("Email: " + usuario.getEmail());
                 System.out.println("LinkedIn: " + usuario.getLinkedIn());
             }
+
+            //Creo el json de salida
             jsonSalidaUsers = gson.toJson(usuariosLeer);
         } catch (Exception e) {
             System.out.println("Error al leer los usuarios desde la base de datos");
@@ -43,6 +49,8 @@ public class LeerUsuarios {
             em.close();
             emf.close();
         }
+
+        //Devuelvo el json
         return jsonSalidaUsers;
     }
 }

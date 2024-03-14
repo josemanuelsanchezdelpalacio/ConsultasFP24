@@ -53,6 +53,8 @@ public class LeerFamilyFiltrada {
                     System.out.println("Nombre de la familia: " + familia.getFamilyName());
 
                 }
+
+                //Creo el json de salida
                 jsonSalidaFamily = gson.toJson(listaFamilyEntity);
             }else{
                 System.out.println("No se ha encontrado ningúna familia.");
@@ -60,6 +62,7 @@ public class LeerFamilyFiltrada {
             em.close();
             emf.close();
         }
+        //DEvuelvo el json
         return jsonSalidaFamily;
     }
 }

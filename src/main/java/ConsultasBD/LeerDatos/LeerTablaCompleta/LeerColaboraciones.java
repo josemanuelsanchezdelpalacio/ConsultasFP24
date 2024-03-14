@@ -24,12 +24,15 @@ import java.util.List;
 public class LeerColaboraciones {
 
     public static String leerColaboraciones() {
+        //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
         String jsonSalidaProjects = "";
         Gson gson = new Gson();
 
         try {
+
+            //Obtengo la lista de colaboraciones
             List<CollaborationEntity> colaboracionesLeer = em.createQuery("SELECT c FROM CollaborationEntity c", CollaborationEntity.class).getResultList();
 
             for (CollaborationEntity colaboracion : colaboracionesLeer) {
@@ -38,6 +41,7 @@ public class LeerColaboraciones {
                 System.out.println("IdFamily: " + colaboracion.getIdFamily());
                 System.out.println("IsManager: " + colaboracion.getManager());
             }
+            //Creo el json de salida
             jsonSalidaProjects = gson.toJson(colaboracionesLeer);
         } catch (Exception e) {
             System.out.println("Error al leer las colaboraciones desde la base de datos");
@@ -46,6 +50,7 @@ public class LeerColaboraciones {
             em.close();
             emf.close();
         }
+        //Devuelvo el json
         return jsonSalidaProjects;
     }
 }

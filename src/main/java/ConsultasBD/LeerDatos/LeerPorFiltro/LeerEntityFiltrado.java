@@ -54,6 +54,7 @@ public class LeerEntityFiltrado {
                     System.out.println("Email del centro: " + entity.getEmail() + "\n");
 
                 }
+                //Creo el json de salida
                 jsonSalidaEntities = gson.toJson(listaEntitiesEntity);
             }else{
                 System.out.println("No se ha encontrado ningún centro.");
@@ -61,6 +62,7 @@ public class LeerEntityFiltrado {
 
 
         }
+        //Devuelvo el json
         return jsonSalidaEntities;
     }
 }

@@ -18,18 +18,23 @@ import java.util.List;
 public class LeerFamilias {
 
     public static String leerFamilias() {
+
+        //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
         String jsonSalidaFamilias = "";
         Gson gson = new Gson();
 
         try {
+            //Obtengo la lista de familias
             List<FamilyEntity> familiasLeer = em.createQuery("SELECT f FROM FamilyEntity f", FamilyEntity.class).getResultList();
 
             for (FamilyEntity familia : familiasLeer) {
                 System.out.println("FamilyCode: " + familia.getFamilyCode());
                 System.out.println("FamilyName: " + familia.getFamilyName());
             }
+
+            //Creo el json de salida
             jsonSalidaFamilias = gson.toJson(familiasLeer);
         } catch (Exception e) {
             System.out.println("Error al leer las familias desde la base de datos");
@@ -38,6 +43,8 @@ public class LeerFamilias {
             em.close();
             emf.close();
         }
+
+        //Devuelvo el json
         return jsonSalidaFamilias;
     }
 }

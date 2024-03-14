@@ -50,7 +50,7 @@ public class LeerCollaborationsProject {
                 for(ProjectEntity project : listaProjectsEntity) {
                     idProject = project.getId();
                 }
-                //Creamos un CriteriaBuilder para poder buscar por el id del proyecto
+                //Creamos un CriteriaBuilder para poder buscar por el id del proyecto y obtenr las colaboraciones de ese proyecto
                 CriteriaBuilder cb1 = em.getCriteriaBuilder();
                 CriteriaQuery<CollaborationEntity> cq1 = cb1.createQuery(CollaborationEntity.class);
                 Root<CollaborationEntity> root1 = cq1.from(CollaborationEntity.class);
@@ -68,6 +68,8 @@ public class LeerCollaborationsProject {
                             System.out.println("Manager del proyecto: No");
                         }
                     }
+
+                    //Creo el json de salida
                     jsonCollaboratiosn = gson.toJson(listaCollaborationsEntity);
 
                 }else{
@@ -84,6 +86,7 @@ public class LeerCollaborationsProject {
             em.close();
             emf.close();
         }
+        //Devuelvo el json
         return jsonCollaboratiosn;
     }
 }

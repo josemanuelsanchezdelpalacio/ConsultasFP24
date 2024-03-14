@@ -19,12 +19,16 @@ import java.util.List;
 public class LeerProyectos {
 
     public static String leerProyectos() {
+
+        //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
         String jsonSalidaProjects = "";
         Gson gson = new Gson();
 
         try {
+
+            //Obtengo la lista de proyectos
             List<ProjectEntity> proyectosLeer = em.createQuery("SELECT p FROM ProjectEntity p", ProjectEntity.class)
                     .getResultList();
 
@@ -37,6 +41,8 @@ public class LeerProyectos {
                 System.out.println("InitDate: " + proyecto.getInitDate());
                 System.out.println("EndDate: " + proyecto.getEndDate());
             }
+
+            //Creo el json de salidfa
             jsonSalidaProjects = gson.toJson(proyectosLeer);
         } catch (Exception e) {
             System.out.println("Error al leer los proyectos desde la base de datos");
@@ -45,6 +51,8 @@ public class LeerProyectos {
             em.close();
             emf.close();
         }
+
+        //Devuelvo el json
         return jsonSalidaProjects;
     }
 }

@@ -20,7 +20,7 @@ public class LeerUser {
 
     public static String filtrarUser(){
 
-        //Obtengo los datos del json con los entities a buscar
+        //Obtengo los datos del json con los usuarios a buscar
         Path p = Path.of("src/main/resources/jsonLeer/leerUser.json");
         String textoJsonUser = leerFichero(p);
         Gson gson = new GsonBuilder().create();
@@ -37,7 +37,7 @@ public class LeerUser {
             String userName = datosLeerUser.getUserName();
             String surname = datosLeerUser.getSurname();
 
-            //Busco los centros por su nombre
+            //Busco los usuarios por su nombre, apellido e id
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<UsersEntity> cq = cb.createQuery(UsersEntity.class);
             Root<UsersEntity> root = cq.from(UsersEntity.class);
@@ -57,11 +57,15 @@ public class LeerUser {
                     System.out.println("LinkedIn del usuario: " + user.getLinkedIn() + "\n");
 
                 }
+
+                //Creo el json de salida
                 jsonSalidaUser = gson.toJson(listaUserEntity);
             }else{
                 System.out.println("El usuario no existe.");
             }
         }
-        return textoJsonUser;
+
+        //Devuelvo el json
+        return jsonSalidaUser;
     }
 }

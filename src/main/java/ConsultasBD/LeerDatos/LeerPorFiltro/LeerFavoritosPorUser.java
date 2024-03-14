@@ -22,7 +22,7 @@ public class LeerFavoritosPorUser {
 
     public static String filtrarFavoritos(){
 
-        //Obtengo los datos del json con los entities a buscar
+        //Obtengo los datos del json con los favoritos a buscar
         Path p = Path.of("src/main/resources/jsonLeer/leerFavoritosUser.json");
         String textoJsonEntities = leerFichero(p);
         Gson gson = new GsonBuilder().create();
@@ -37,7 +37,7 @@ public class LeerFavoritosPorUser {
         for(DatosLeerFavoritos datosLeerFav: listaLeerFav){
             int idUser = datosLeerFav.getIdUser();
 
-            //Busco los centros por su nombre
+            //Busco los favoritos por el id de usuario
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<FavouriteEntity> cq = cb.createQuery(FavouriteEntity.class);
             Root<FavouriteEntity> root = cq.from(FavouriteEntity.class);
@@ -54,6 +54,8 @@ public class LeerFavoritosPorUser {
                     System.out.println("Id del usuario: " + fav.getIdUser() + "\n");
 
                 }
+
+                //Creo el json de salida
                 jsonSalidaFavoritos = gson.toJson(listaFavouritesEntity);
             }else{
                 System.out.println("El usuario no tiene favoritos.");
@@ -61,7 +63,8 @@ public class LeerFavoritosPorUser {
 
 
         }
-        return textoJsonEntities;
+        //Devuelvo el json
+        return jsonSalidaFavoritos;
     }
 
 }

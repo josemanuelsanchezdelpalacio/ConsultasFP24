@@ -18,18 +18,24 @@ import java.util.List;
 public class LeerFavoritos {
 
     public static String leerFavoritos() {
+
+        //Creo el EntityManager
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
         EntityManager em = emf.createEntityManager();
         String jsonSalidaFavoritos = "";
         Gson gson = new Gson();
 
         try {
+
+            //obtengo la lista de favoritos
             List<FavouriteEntity> favoritosLeer = em.createQuery("SELECT fav FROM FavouriteEntity fav", FavouriteEntity.class).getResultList();
 
             for (FavouriteEntity favorito : favoritosLeer) {
                 System.out.println("IdProject: " + favorito.getIdProject());
                 System.out.println("IdUser: " + favorito.getIdUser());
             }
+
+            //Creo el json de salida
             jsonSalidaFavoritos = gson.toJson(favoritosLeer);
         } catch (Exception e) {
             System.out.println("Error al leer los favoritos desde la base de datos");
@@ -38,6 +44,8 @@ public class LeerFavoritos {
             em.close();
             emf.close();
         }
+
+        //Devuelvo el json
         return jsonSalidaFavoritos;
     }
 }
