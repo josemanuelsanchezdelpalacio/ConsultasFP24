@@ -22,7 +22,7 @@ public class EliminarTechnology {
 
     public static ArrayList<DatosEliminarTechnology> technologyEliminar = new ArrayList<>();
     public static void eliminarFavorito() {
-        Path p = Path.of("src/main/resources/eliminarTechnology.json");
+        Path p = Path.of("src/main/resources/jsonEliminar/eliminarTechnology.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {

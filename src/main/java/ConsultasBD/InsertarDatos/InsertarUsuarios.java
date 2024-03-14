@@ -16,7 +16,7 @@ import java.nio.file.Path;
 
 public class InsertarUsuarios {
     public static void insertarUsuarios() {
-        Path p = Path.of("src/main/resources/jsonTablas/insertUser.json");
+        Path p = Path.of("src/main/resources/jsonInsertar/insertUser.json");
         DatosInsertarUser usuariosInsertar;
         String txtJson;
 

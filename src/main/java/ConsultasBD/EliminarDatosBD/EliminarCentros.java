@@ -20,7 +20,7 @@ public class EliminarCentros {
 
     public static ArrayList<DatosEliminarCentros> centrosEliminar = new ArrayList<>();
     public static void eliminarCentro() {
-        Path p = Path.of("src/main/resources/eliminarCentros.json");
+        Path p = Path.of("src/main/resources/jsonEliminar/eliminarCentros.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {

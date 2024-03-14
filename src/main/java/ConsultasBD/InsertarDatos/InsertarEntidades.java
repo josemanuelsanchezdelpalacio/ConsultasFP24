@@ -22,7 +22,7 @@ public class InsertarEntidades {
 
 
     public static void insertarEntidades() {
-        Path p = Path.of("src/main/resources/jsonTablas/insertEntity.json");
+        Path p = Path.of("src/main/resources/jsonInsertar/insertEntity.json");
         DatosInsertarEntity entitiesInsertar;
         String txtJson;
 

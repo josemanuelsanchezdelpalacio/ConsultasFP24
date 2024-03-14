@@ -16,35 +16,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class lambdaParametros implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
+import com.google.gson.Gson;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class lambdaParametros implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context) {
         Map<String, String> queryStringParameters = input.getQueryStringParameters();
-        if (queryStringParameters == null || queryStringParameters.isEmpty()) {
-            return new APIGatewayProxyResponseEvent()
-                    .withStatusCode(400)
-                    .withBody("Parámetros de consulta no encontrados");
-        }
-
         String entityName = queryStringParameters.get("entityName");
         String entityCode = queryStringParameters.get("entityCode");
-        if (entityName == null || entityCode == null) {
-            return new APIGatewayProxyResponseEvent()
-                    .withStatusCode(400)
-                    .withBody("Los parámetros entityName y entityCode son obligatorios");
-        }
-
         String bodyContent = obtenerEntidadesDesdeBaseDeDatos(entityName, entityCode);
-        if (bodyContent == null) {
-            return new APIGatewayProxyResponseEvent()
-                    .withStatusCode(404)
-                    .withBody("No se encontraron entidades con los parámetros proporcionados");
-        }
-
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
-
         return new APIGatewayProxyResponseEvent()
                 .withStatusCode(200)
                 .withHeaders(headers)
@@ -69,13 +63,8 @@ public class lambdaParametros implements RequestHandler<APIGatewayProxyRequestEv
                     }
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            return null;
-        }
-
-        if (listEntidades.isEmpty()) {
-            return null;
         }
 
         Entities entidades = new Entities();

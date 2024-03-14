@@ -22,7 +22,7 @@ public class EliminarImplement {
 
     public static ArrayList<DatosEliminarImplement> implementacionesEliminar = new ArrayList<>();
     public static void eliminarImplementacion() {
-        Path p = Path.of("src/main/resources/eliminarImplementacion.json");
+        Path p = Path.of("src/main/resources/jsonEliminar/eliminarImplementacion.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {

@@ -15,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 public class InsertarImplementaciones {
     public static void insertarImplementaciones() {
-        Path p = Path.of("src/main/resources/jsonTablas/insertImplement.json");
+        Path p = Path.of("src/main/resources/jsonInsertar/insertImplement.json");
         DatosInsertarImplement implementacionesInsertar;
         String txtJson;
 

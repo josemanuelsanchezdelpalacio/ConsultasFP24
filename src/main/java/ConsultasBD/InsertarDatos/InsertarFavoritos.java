@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class InsertarFavoritos {
 
     public static void insertarFavoritos() {
-        Path p = Path.of("src/main/resources/jsonTablas/insertFavourite.json");
+        Path p = Path.of("src/main/resources/jsonInsertar/insertFavourite.json");
         DatosInsertarFavourite favouritesInsertar;
         String txtJson;
 

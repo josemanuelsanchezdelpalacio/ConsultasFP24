@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class InsertarTecnologias {
 
     public static void insertarTecnologias() {
-        Path p = Path.of("src/main/resources/jsonTablas/insertTechnology.json");
+        Path p = Path.of("src/main/resources/jsonInsertar/insertTechnology.json");
         DatosInsertarTechnology tecnologiasInsertar;
         String txtJson;
 

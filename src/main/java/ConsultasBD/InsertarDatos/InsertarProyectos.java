@@ -17,7 +17,7 @@ import java.nio.file.Path;
 
 public class InsertarProyectos {
     public static void insertarProyectos() {
-        Path p = Path.of("src/main/resources/jsonTablas/insertProject.json");
+        Path p = Path.of("src/main/resources/jsonInsertar/insertProject.json");
         DatosInsertarProject proyectosInsertar;
         String txtJson;
 

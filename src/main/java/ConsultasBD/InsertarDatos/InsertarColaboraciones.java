@@ -16,7 +16,7 @@ import java.nio.file.Path;
 public class InsertarColaboraciones {
 
     public static void insertarColaboraciones() {
-        Path p = Path.of("src/main/resources/jsonTablas/insertCollaboration.json");
+        Path p = Path.of("src/main/resources/jsonInsertar/insertCollaboration.json");
         DatosInsertarCollaboration colaboracionesInsertar;
         String txtJson;
 

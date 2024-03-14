@@ -22,7 +22,7 @@ public class EliminarUser {
 
     public static ArrayList<DatosEliminarUser> userEliminar = new ArrayList<>();
     public static void eliminarUser() {
-        Path p = Path.of("src/main/resources/eliminarUser.json");
+        Path p = Path.of("src/main/resources/jsonEliminar/eliminarUser.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {

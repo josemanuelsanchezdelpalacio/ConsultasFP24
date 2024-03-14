@@ -19,7 +19,7 @@ import java.util.List;
 public class EliminarFamilias {
     public static ArrayList<DatosEliminarFamilias> familiasEliminiar = new ArrayList<>();
     public static void eliminarFamilia() {
-        Path p = Path.of("src/main/resources/eliminarFamilias.json");
+        Path p = Path.of("src/main/resources/jsonEliminar/eliminarFamilias.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {

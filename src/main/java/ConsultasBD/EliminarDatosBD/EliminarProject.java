@@ -21,7 +21,7 @@ public class EliminarProject {
 
     public static void eliminarProject(){
 
-        Path p = Path.of("src/main/resources/eliminarProject.json");
+        Path p = Path.of("src/main/resources/jsonEliminar/eliminarProject.json");
         if (FicheroEscribible.ficheroLegible(p)) {
             try {
                 Gson gson = new Gson();

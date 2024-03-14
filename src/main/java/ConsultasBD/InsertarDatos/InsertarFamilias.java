@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class InsertarFamilias {
 
     public static void insertarFamilias() {
-        Path p = Path.of("src/main/resources/jsonTablas/insertFamily.json");
+        Path p = Path.of("src/main/resources/jsonInsertar/insertFamily.json");
         DatosInsertarFamily familiesInsertar;
         String txtJson;
 

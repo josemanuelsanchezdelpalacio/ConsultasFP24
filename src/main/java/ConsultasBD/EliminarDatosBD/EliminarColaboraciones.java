@@ -22,7 +22,7 @@ public class EliminarColaboraciones {
 
     public static ArrayList<DatosEliminarColaboraciones> colaboracionesEliminar = new ArrayList<>();
     public static void eliminarFavorito() {
-        Path p = Path.of("src/main/resources/eliminarColaboraciones.json");
+        Path p = Path.of("src/main/resources/jsonEliminar/eliminarColaboraciones.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {

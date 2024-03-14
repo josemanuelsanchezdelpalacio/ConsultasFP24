@@ -22,7 +22,7 @@ public class EliminarFavourite {
 
     public static ArrayList<DatosEliminarFavourite> favoritosEliminar = new ArrayList<>();
     public static void eliminarFavorito() {
-        Path p = Path.of("src/main/resources/eliminarFavoritos.json");
+        Path p = Path.of("src/main/resources/jsonEliminar/eliminarFavoritos.json");
 
         if (FicheroEscribible.ficheroLegible(p)) {
             try {
