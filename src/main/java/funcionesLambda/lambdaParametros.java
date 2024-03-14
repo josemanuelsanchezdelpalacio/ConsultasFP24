@@ -18,30 +18,46 @@ import java.util.Map;
 
 public class lambdaParametros implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
+    @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context) {
-        String entityName = input.getQueryStringParameters().get("entityName");
-        String entityCode = input.getQueryStringParameters().get("entityCode");
+        Map<String, String> queryStringParameters = input.getQueryStringParameters();
+        if (queryStringParameters == null || queryStringParameters.isEmpty()) {
+            return new APIGatewayProxyResponseEvent()
+                    .withStatusCode(400)
+                    .withBody("Parámetros de consulta no encontrados");
+        }
+
+        String entityName = queryStringParameters.get("entityName");
+        String entityCode = queryStringParameters.get("entityCode");
+        if (entityName == null || entityCode == null) {
+            return new APIGatewayProxyResponseEvent()
+                    .withStatusCode(400)
+                    .withBody("Los parámetros entityName y entityCode son obligatorios");
+        }
+
+        String bodyContent = obtenerEntidadesDesdeBaseDeDatos(entityName, entityCode);
+        if (bodyContent == null) {
+            return new APIGatewayProxyResponseEvent()
+                    .withStatusCode(404)
+                    .withBody("No se encontraron entidades con los parámetros proporcionados");
+        }
 
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
-        headers.put("X-Custom-Header", "application/json");
 
-        APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent().withHeaders(headers);
-
-        String bodyContent = obtenerEntidadesDesdeBaseDeDatos(entityName, entityCode);
-
-        String output = String.format("{ \"message\": \"Entidades:\", \"listaEntidades\": %s }", bodyContent);
-
-        return response.withStatusCode(200).withBody(output);
+        return new APIGatewayProxyResponseEvent()
+                .withStatusCode(200)
+                .withHeaders(headers)
+                .withBody(bodyContent);
     }
 
-    public static String obtenerEntidadesDesdeBaseDeDatos(String parametro1, String parametro2) {
+    public static String obtenerEntidadesDesdeBaseDeDatos(String entityName, String entityCode) {
+        List<Entity> listEntidades = new ArrayList<>();
         try (Connection conexion = ConexionMySQL.conectar("FP24MJO")) {
-            List<Entity> listEntidades = new ArrayList<>();
-
-            try (PreparedStatement ps = conexion.prepareStatement("SELECT * FROM ENTITY WHERE EntityName = ? AND EntityCode = ?")) {
-                ps.setString(1, parametro1);
-                ps.setString(2, parametro2);
+            String query = "SELECT * FROM ENTITY WHERE EntityName = ? AND EntityCode = ?";
+            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+                ps.setString(1, entityName);
+                ps.setString(2, entityCode);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
                         Entity entidad = new Entity();
@@ -53,13 +69,18 @@ public class lambdaParametros implements RequestHandler<APIGatewayProxyRequestEv
                     }
                 }
             }
-
-            Entities entidades = new Entities();
-            entidades.setEntidades(listEntidades);
-            Gson gson = new Gson();
-            return gson.toJson(entidades);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
+
+        if (listEntidades.isEmpty()) {
+            return null;
+        }
+
+        Entities entidades = new Entities();
+        entidades.setEntidades(listEntidades);
+        Gson gson = new Gson();
+        return gson.toJson(entidades);
     }
 }
