@@ -33,16 +33,21 @@ import java.util.Map;
 public class lambdaParametros implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context) {
-        Map<String, String> queryStringParameters = input.getQueryStringParameters();
-        String entityName = queryStringParameters.get("entityName");
-        String entityCode = queryStringParameters.get("entityCode");
-        String bodyContent = obtenerEntidadesDesdeBaseDeDatos(entityName, entityCode);
-        Map<String, String> headers = new HashMap<>();
+        Map<String, String> headers = input.getQueryStringParameters();
+        String entityName = headers.get("entityName");
+        String entityCode = headers.get("entityCode");
+
         headers.put("Content-Type", "application/json");
-        return new APIGatewayProxyResponseEvent()
-                .withStatusCode(200)
-                .withHeaders(headers)
-                .withBody(bodyContent);
+        headers.put("X-Custom-Header", "application/json");
+
+        APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent().withHeaders(headers);
+
+        String bodyContent = obtenerEntidadesDesdeBaseDeDatos(entityName, entityCode);
+
+        String output = String.format("{ \"message\": \"Entidades:\", \"listaEntidades\": %s }", bodyContent);
+
+        return response.withStatusCode(200).withBody(output);
+
     }
 
     public static String obtenerEntidadesDesdeBaseDeDatos(String entityName, String entityCode) {
